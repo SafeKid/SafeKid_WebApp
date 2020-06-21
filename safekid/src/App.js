@@ -1,26 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class SigninContainer extends React.Component{
+    render(){
+        return(
+            <div className = {'authBox'}>
+                <div className = {'leftBox'}>
+                    <div className = {'bgBlue'}/>
+                    <div className = {'imageAuth'}/>
+                    <div className = {'imageText bold style1'}>SafeKid</div>
+                    <div className = {'imageText style2'}>Making the world a safer place to your child</div>
+                </div>
+                <div className = {'rightBox'}>
+                    <div className = {'box'}>
+                        <div className={'titleAuth'}>Log into SafeKid</div>
+                        <div className = {'inputSBox'}>
+                            <input className={'inputS'} type={'text'} placeholder={'Email / Username'}/>
+                      </div>
+                      <div className = {'inputSBox'}>
+                            <input className={'inputS'} type={'password'} placeholder={'Password'}/>
+                      </div>
+                      <div className={'contentBox'}>
+                          <div className={'checkboxBox'}>
+                            <input type={'checkbox'} className={'checkbox'}/>
+                            <label className={'checkboxLabel'}>Remember</label>
+                      </div>
+                      <div className={'text1'}>Forgot Password?</div>
+                      </div>
+                      <div className={'btnAuth'}>Login</div>
+                      <div className={'text'}>Don't have an account?</div>
+                      <div className={'text2'}>Sign up</div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+    
 }
 
-export default App;
+export default SigninContainer;
