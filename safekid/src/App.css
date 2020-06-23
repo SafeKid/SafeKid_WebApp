@@ -1,12 +1,12 @@
 .authBox{
-  width: 700px;
+  width: 800px;
   overflow: hidden;
   margin: 80px auto 30px;
 }
 
 .leftBox{
-  width: 300px;
-  height: 480px;
+  width: 345px;
+  height: 540px;
   float: left;
   position: relative;
   display: block;
@@ -35,7 +35,7 @@
 }
 
 .imageText{
-  font-size: 28px;
+  font-size: 26px;
   position: absolute;
   color: #ffffffda;
 }
@@ -45,18 +45,21 @@
 }
 
 .imageText.style1{
-  top:190px;
+  margin-top:30px;
   left: 20px;
 }
 
 .imageText.style2{
   top: 250px;
   left: 20px;
+  font-size: 24px;
+  margin-top: 30px;
+  margin-left: 20px;
 }
 
 .rightBox{
-  width: 397.5px;
-  height: 478px;
+  width: 452.79px;
+  height: 538px;
   float: right;
   border: 1px solid #2f088a;
 }
@@ -68,10 +71,10 @@
 }
 
 .titleAuth{
-  font-size: 22px;
+  font-size: 30px;
   text-align: center;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   margin-top: 70px;
   color: #322a5e;
 }
@@ -96,7 +99,7 @@
 .contentBox{
   overflow:hidden;
   height: 42px;
-  margin-top: 30px;
+  margin-top: 40px;
 
 }
 
@@ -132,6 +135,7 @@
   line-height: 47px;
   border-radius: 4px;
   cursor: pointer;
+ ;
 }
 
 
