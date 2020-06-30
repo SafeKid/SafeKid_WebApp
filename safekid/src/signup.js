@@ -1,9 +1,29 @@
 import React from 'react';
-import './signup.css';
 
-class Signup extends React.Component{
-    render(){
-        return(
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+// core components
+import GridItem from "components/Grid/GridItem.js";
+import GridContainer from "components/Grid/GridContainer.js";
+import CustomInput from "components/CustomInput/CustomInput.js";
+import Button from "components/CustomButtons/Button.js";
+import Card from "components/Card/Card.js";
+import CardHeader from "components/Card/CardHeader.js";
+import CardAvatar from "components/Card/CardAvatar.js";
+import CardBody from "components/Card/CardBody.js";
+import CardFooter from "components/Card/CardFooter.js";
+import {Link} from 'react-router-dom';
+import './signup.css';
+import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
+
+const useStyles = makeStyles(styles);
+
+export default function Signup() {
+       const classes = useStyles();
+       return(
+           <div className='row'>
+               <Card className= 'col-12 col-md-5 m-1'>
+           <CardBody>
             <div className = {'authBox'}>
                 <div className = {'rBox'}>
                     <div className = {'bBlue'}/>
@@ -14,7 +34,7 @@ class Signup extends React.Component{
                 <div className = {'lBox'}>
                     <div className = {'bo'}>
                         <div className={'titleAth'}>REGISTER</div>
-                        <form>
+                        
                         <div className = {'inputBox'}>
                             <label>First name:</label>
                             <input className={'input'} type={'text'}/>
@@ -35,17 +55,17 @@ class Signup extends React.Component{
                             <label>Confirm Password:</label>
                             <input className={'input'} type={'password'}/>
                         </div>
-                        <div className={'btnAuth'}>Register</div>
-                        <div className={'text'}>Already a Member?</div>
-                        <div className={'text2'}>Sign In</div>
-                      </form>
-                    </div>
+                        <div className={'btnAth'}>Register</div>
+                        <div className={'text'}>Already a Member? <Link to="/signin">Sign in</Link></div>
+                        </div>
                 </div>
             </div>
+            </CardBody>
 
-            )
-        }
-        
+          </Card>
+           
+              </div>
+              
+        )
     }
     
-    export default Signup;

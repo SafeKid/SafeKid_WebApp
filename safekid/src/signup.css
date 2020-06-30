@@ -54,7 +54,7 @@
 }
 
 .lBox{
-  width: 452.79px;
+  width: 453px;
   height: 538px;
   float: left;
   border: 1px solid #2f088a;
@@ -91,4 +91,21 @@
   border-bottom: 2px solid #d8d8d8;
   margin-bottom: 10px;
   outline: none;
+}
+
+.btnAth{
+  width: 300px;
+  height: 47px;
+  color: #ffffff;
+  background-color: rgb(19, 17, 160);
+  text-align: center;
+  line-height: 47px;
+  border-radius: 4px;
+  cursor: pointer;
+ ;
+}
+
+
+.text3{
+ margin-top: 35px;
 }
