@@ -51,7 +51,8 @@ export default function Dashboard() {
     <div
     className="App"z
     style={{
-      backgroundImage: `url(${carfix})`,   
+      backgroundImage: `url(${carfix})`, 
+      height: "100%"  
     }}>
       <div className="Wrapper"  style={{marginLeft:"50px"}}>
     <div>
@@ -63,6 +64,14 @@ export default function Dashboard() {
           </CardHeader>
           <CardBody>
           <br/><br/><br/><br/>
+          </CardBody>
+        </Card>
+      </GridItem>
+
+      <GridItem xs={9} sm={9} md={9}>
+        <Card>
+          <CardBody>
+           <br/> <br/> <br/> <br/> <br/>
           </CardBody>
         </Card>
       </GridItem>
