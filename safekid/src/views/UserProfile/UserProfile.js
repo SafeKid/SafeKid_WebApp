@@ -46,7 +46,7 @@ export default function UserProfile() {
     }}>
       <div className="Wrapper" style={{marginLeft:"50px"}}>
     <div>
-      <GridContainer style={{padding:"50px"}}>
+      <GridContainer style={{paddingTop:"50px"}}>
         <GridItem xs={10} sm={10} md={6}>
           <Card>
             <CardHeader color="primary">
@@ -145,8 +145,8 @@ export default function UserProfile() {
             </CardFooter>
           </Card>
         </GridItem>
-        <GridItem xs={10} sm={10} md={3}>
-          <Card profile>
+        <GridItem   xs={10} sm={10} md={3} >
+          <Card profile >
             <CardAvatar profile>
               <a href="#pablo" onClick={e => e.preventDefault()}>
                 <img src={avatar} alt="..." />

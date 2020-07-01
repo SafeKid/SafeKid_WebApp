@@ -55,21 +55,7 @@ export default function Dashboard() {
     <div>
       <GridContainer>
       <GridItem xs={15} sm={6} md={4}>
-            <Card>
-            <Link to ="/weather">
-              <CardHeader color="warning" stats icon>
-                <CardIcon color="warning">
-                <i class="material-icons">&#xe3dd;</i>
-                </CardIcon>
-                <h4 className={classes.cardTitle}><b>Block Users</b></h4>
-              </CardHeader>
-              <CardFooter stats>
-                <div className={classes.stats}>
-                  <hr/>
-                </div>
-              </CardFooter>
-                </Link>
-            </Card>
+
           </GridItem>
       </GridContainer>
     </div>
