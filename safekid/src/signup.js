@@ -14,16 +14,21 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import {Link} from 'react-router-dom';
 import './signup.css';
-import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 
-const useStyles = makeStyles(styles);
 
 export default function Signup() {
-       const classes = useStyles();
+       
        return(
-           <div className='row'>
-               <Card className= 'col-12 col-md-5 m-1'>
-           <CardBody>
+       <div
+        className="App"
+        style={{
+          backgroundColor: "#363131da",
+          width:"100%",
+          height:"1oo%"
+        }}>
+
+         <div className="wrapper">
+              
             <div className = {'authBox'}>
                 <div className = {'rBox'}>
                     <div className = {'bBlue'}/>
@@ -60,10 +65,8 @@ export default function Signup() {
                         </div>
                 </div>
             </div>
-            </CardBody>
-
-          </Card>
-           
+        
+              </div>
               </div>
               
         )

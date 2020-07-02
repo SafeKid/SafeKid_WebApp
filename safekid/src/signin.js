@@ -15,17 +15,23 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import './signin.css';
 
-import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
-
-
-  const useStyles = makeStyles(styles);
 
  export default function Signin() {
-        const classes = useStyles();
-        return(
-            <div className='row'>
-                <Card className= 'col-12 col-md-5 m-1'>
-            <CardBody>
+     
+        return (
+          
+            <div
+            className="App"
+            style={{
+              backgroundColor: "#363131da",
+              width:"100%",
+              height:"1oo%"
+             
+            }}>
+             
+  
+      
+             <div className="wrapper">
             <div className = {'authBox'}>
                 <div className = {'leftBox'}>
                     <div className = {'bgBlue'}/>
@@ -34,6 +40,7 @@ import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js"
                     <div className = {'imageText style2'}>Making the world a safer place to your child</div>
                 </div>
                 <div className = {'rightBox'}>
+                <br/>
                     <div className = {'box'}>
                 
                         <div className={'titleAuth'}>LOGIN</div>
@@ -50,17 +57,20 @@ import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js"
                       </div>
                       <div className={'text1'}>Forgot Password?</div>
                       </div>
-                      <div className={'btnAuth'}>Login</div>
+                      <div className={'btnAuth'}>Login</div><br/>
                       <div className={'text'}>Don't have an account?  <Link to="/signup">Sign up</Link></div>
                  
                     </div>
                 </div>
             </div>
-            </CardBody>
-
-          </Card>
            
-              </div>
+      
+      
+    </div>
+    </div>
+   
+             
+              
               
         )
     }

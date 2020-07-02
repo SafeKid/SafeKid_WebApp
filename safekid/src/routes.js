@@ -71,6 +71,15 @@ const dashboardRoutes = [
       component: Maps,
       layout: "/parent"
     },
+
+    {
+      path: "/contact",
+      name: "Contact Admin",
+      rtlName: "خرائط",
+      icon: "message",
+      component: TableList,
+      layout: "/parent"
+    },
     // {
   //   path: "/notifications",
   //   name: "Notifications",
