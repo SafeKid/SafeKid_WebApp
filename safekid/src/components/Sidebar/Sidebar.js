@@ -89,11 +89,11 @@ export default function Sidebar(props) {
       >
         
         <div className={classes.logoImage}>
-          <img src={logo} style={{marginLeft: "20px", width:"60%",height:"55%"}} alt="logo"  className={classes.img} />
+          <img src={logo} style={{marginLeft: "4px", marginTop:"10px" ,width:"75%",height:"70%"}} alt="logo"  className={classes.img} />
         </div>
         
         <div className={classes.logoText}style={{fontSize: "30px",marginTop:"50px",marginLeft: "50px"}} >
-        {logoText}
+        {logoText}<br/>
         </div>
       </div>
     </div>
