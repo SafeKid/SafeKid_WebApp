@@ -64,7 +64,9 @@ export default function Dashboard(props) {
       <GridItem xs={15} sm={6} md={4}>
            
           </GridItem>
-          Hello
+          <h4>
+					Hello { fire.getCurrentUsername() }
+          </h4>
 
          
         {/* <GridItem xs={12} sm={6} md={3}>

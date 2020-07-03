@@ -28,8 +28,7 @@ export default function App() {
       <Route path="/signup" component={Signup}/>
       <Route path="/parent" component={parent} />
       <Route path="/Dashboard" component={Dashboard}/>
-     
-      <Redirect from="Dashboard" to="/parent/dashboard" />
+      <Redirect from="/" to="/parent/dashboard" />
         </Switch>    
   </Router>  
           

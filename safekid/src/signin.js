@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import {Link, withRouter} from 'react-router-dom';
-// @material-ui/core components
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import fire from 'config/fire';
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
+import SnackBar from '@material-ui/core/SnackBar';
+import IconButton from '@material-ui/core/IconButton';
+
 import './signin.css';
 
 
@@ -25,8 +27,6 @@ function Signin(props) {
              
             }}>
              
-  
-      
              <div className="wrapper">
             <div className = {'authBox'}>
                 <div className = {'leftBox'}>

@@ -2,14 +2,16 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
+
   var firebaseConfig = {
-    apiKey: "AIzaSyCjWdqtNB8mU0VJmIvMDowDaaODCKViNP4",
-    authDomain: "my-project-1cf40.firebaseapp.com",
-    databaseURL: "https://my-project-1cf40.firebaseio.com",
-    projectId: "my-project-1cf40",
-    storageBucket: "my-project-1cf40.appspot.com",
-    messagingSenderId: "824884617037",
-    appId: "1:824884617037:web:f1b589bb26cd2495c0a104"
+    apiKey: "AIzaSyDMMtNaoakN-KNtcut2R2AgOhVJWMAjj7U",
+    authDomain: "safekid-demo-b3e44.firebaseapp.com",
+    databaseURL: "https://safekid-demo-b3e44.firebaseio.com",
+    projectId: "safekid-demo-b3e44",
+    storageBucket: "safekid-demo-b3e44.appspot.com",
+    messagingSenderId: "1064185719790",
+    appId: "1:1064185719790:web:6ebcadd6266fa510b1fcff",
+    measurementId: "G-NVTN14GYXW"
   };
   // Initialize Firebase
   class fire{
@@ -28,16 +30,23 @@ import "firebase/firestore";
         return this.auth.signOut()
     }
 
-    isInitialized(){
+    async register(firstname,lastname,email,password,confirmpassword) {
+      await this.auth.createUserWithEmailAndPassword(email, password)
+      return this.auth.currentUser.updateProfile({
+        displayName: lastname
+      })
+    }
+  
+    isInitialized() {
       return new Promise(resolve => {
         this.auth.onAuthStateChanged(resolve)
       })
     }
-
-    getCurrentUsername(){
+  
+    getCurrentUsername() {
       return this.auth.currentUser && this.auth.currentUser.displayName
     }
-
   }
+  
 
   export default new fire()

@@ -1,22 +1,20 @@
-import React from 'react';
-
-import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
-// core components
-import GridItem from "components/Grid/GridItem.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import Button from "components/CustomButtons/Button.js";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardAvatar from "components/Card/CardAvatar.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import fire from 'config/fire';
+import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
+import {Link, withRouter} from 'react-router-dom';
 import './signup.css';
 
+const useStyles = makeStyles(styles)
 
-export default function Signup() {
+function Signup(props) {
+    const {classes} =[useStyles(),props]
+
+    const [firstname, setFirstName] = useState('')
+    const [lastname, setLastName] = useState('')
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const [confirmpassword, setCpass] = useState('')
        
        return(
        <div
@@ -42,25 +40,25 @@ export default function Signup() {
                         
                         <div className = {'inputBox'}>
                             <label>First name:</label>
-                            <input className={'input'} type={'text'}/>
+                            <input className={'input'} type={'text'} value={firstname} onChange={e => setFirstName(e.target.value)}/>
                         </div>
                         <div className = {'inputBox'}>
                              <label>Last Name:</label>
-                            <input className={'input'} type={'text'}/>
+                            <input className={'input'} type={'text'} value={lastname} onChange={e => setLastName(e.target.value)}/>
                         </div>
                         <div className = {'inputBox'}>
                             <label>Email:</label>
-                            <input className={'input'} type={'email'}/>
+                            <input className={'input'} type={'email'} value={email} onChange={e => setEmail(e.target.value)}/>
                         </div>
                         <div className = {'inputBox'}>
                             <label>Password:</label>
-                            <input className={'input'} type={'password'}/>
+                            <input className={'input'} type={'password'} value={password} onChange={e => setPassword(e.target.value)}/>
                         </div>
                         <div className = {'inputBox'}>
                             <label>Confirm Password:</label>
-                            <input className={'input'} type={'password'}/>
+                            <input className={'input'} type={'password'} value={confirmpassword} onChange={e => setCpass(e.target.value)}/>
                         </div>
-                        <div className={'btnAth'}>Register</div>
+                        <div className={'btnAth'} onClick={register}>Register</div>
                         <div className={'text'}>Already a Member? <Link to="/signin">Sign in</Link></div>
                         </div>
                 </div>
@@ -70,5 +68,15 @@ export default function Signup() {
               </div>
               
         )
+        async function register() {
+            try {
+                await fire.register(firstname,lastname, email, password,confirmpassword)
+                props.history.replace('/parent/dashboard')
+            } catch(error) {
+                alert(error.message)
+            }
+        }
     }
+
+export default withRouter(withStyles(styles)(Signup))
     
