@@ -63,7 +63,7 @@
     width: 453px;
     height: 538px;
     float: right;
-    border: 1px solid #1d1d1f;
+    border: 1px solid #2f088a;
     background-color: #ffffff;
   }
   
@@ -129,7 +129,7 @@
     cursor: pointer;
   }
   
-  .btnAuth{
+  .Button{
     width: 300px;
     height: 47px;
     color: #ffffff;

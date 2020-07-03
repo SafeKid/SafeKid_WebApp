@@ -32,6 +32,8 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import carfix from "assets/img/cp.png";
 import  "views/Image.css"
+import fire from "config/fire";
+
 
 import { bugs, website, server } from "variables/general.js";
 
@@ -45,8 +47,10 @@ import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js"
 
 const useStyles = makeStyles(styles);
 
-export default function Dashboard() {
-  const classes = useStyles();
+export default function Dashboard(props) {
+
+  const {classes} =props
+
   return (
     <div
     className="App"
@@ -60,6 +64,8 @@ export default function Dashboard() {
       <GridItem xs={15} sm={6} md={4}>
            
           </GridItem>
+          Hello
+
          
         {/* <GridItem xs={12} sm={6} md={3}>
           <Card>
@@ -239,4 +245,7 @@ export default function Dashboard() {
     </div>
     </div>
   );
+
+
+
 }

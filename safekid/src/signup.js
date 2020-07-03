@@ -22,7 +22,7 @@ export default function Signup() {
        <div
         className="App"
         style={{
-          backgroundColor: "#363131da",
+          backgroundColor: "#ffffff",
           width:"100%",
           height:"1oo%"
         }}>

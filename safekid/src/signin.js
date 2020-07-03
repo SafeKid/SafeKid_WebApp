@@ -1,29 +1,25 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import {Link, withRouter} from 'react-router-dom';
 // @material-ui/core components
-import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
-// core components
-import GridItem from "components/Grid/GridItem.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
-import Button from "components/CustomButtons/Button.js";
-import Card from "components/Card/Card.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardAvatar from "components/Card/CardAvatar.js";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
+import fire from 'config/fire';
+import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 import './signin.css';
 
 
- export default function Signin() {
-     
-        return (
-          
+const useStyles = makeStyles(styles);
+
+function Signin(props) {
+      
+       const {classes} =[useStyles(),props]
+       const [email, setEmail] =useState('')
+       const [password, setPassword] =useState('')
+
+    return(
             <div
             className="App"
             style={{
-              backgroundColor: "#363131da",
+              backgroundColor: "#ffffff",
               width:"100%",
               height:"1oo%"
              
@@ -45,10 +41,24 @@ import './signin.css';
                 
                         <div className={'titleAuth'}>LOGIN</div>
                         <div className = {'inputSBox'}>
-                            <input className={'inputS'} type={'text'} placeholder={'Email / Username'}/>
+                            <input 
+                            className={'inputS'} 
+                            name={'email'}
+                            type={'email'} 
+                            placeholder={'Email'}
+                            onChange={e => setEmail(e.target.value)}
+                            value={email}
+                            />
                       </div>
                       <div className = {'inputSBox'}>
-                            <input className={'inputS'} type={'password'} placeholder={'Password'}/>
+                            <input 
+                            className={'inputS'}
+                            name={'password'} 
+                            type={'password'} 
+                            placeholder={'Password'}
+                            onChange={e => setPassword(e.target.value)}
+                            value={password}
+                            />
                       </div>
                       <div className={'contentBox'}>
                           <div className={'checkboxBox'}>
@@ -57,21 +67,27 @@ import './signin.css';
                       </div>
                       <div className={'text1'}>Forgot Password?</div>
                       </div>
-                      <div className={'btnAuth'}>Login</div><br/>
+                      <div class="Button"
+                     
+                      onClick={signin}>
+                          Login </div><br/>
                       <div className={'text'}>Don't have an account?  <Link to="/signup">Sign up</Link></div>
                  
                     </div>
                 </div>
-            </div>
-           
-      
-      
-    </div>
-    </div>
-   
-             
-              
-              
-        )
+            </div>  
+       </div>
+    </div>       
+  )
+
+  async function signin() {
+    try {
+        await fire.signin(email, password)
+        props.history.replace('parent/dashboard')
+    } catch(error) {
+        alert(error.message)
     }
-    
+}
+}
+
+export default withRouter(withStyles(styles)(Signin))

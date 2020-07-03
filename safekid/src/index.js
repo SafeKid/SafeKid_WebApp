@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
@@ -25,6 +25,7 @@ import UserProfile from "./views/UserProfile/UserProfile"
 import TableList from "./views/TableList/TableList"
 import Signin from "signin"
 import Signup from "signup"
+import App from './App';
 // core components
 import parent from "layouts/parent.js";
 
@@ -33,17 +34,11 @@ import "assets/css/material-dashboard-react.css?v=1.9.0";
 const hist = createBrowserHistory();
 
 ReactDOM.render(
-  <Router history={hist}>
-    <Switch>
-    <Route path="/signin" component={Signin}/>
-    <Route path="/signup" component={Signup}/>
-      <Route path="/parent" component={parent} />
-      <Route exact path="/Dashboard" component={Dashboard}/>
-      <Route exact path="/Typography" component={Typography}/>
-      <Route exact path="/UserProfile" component={UserProfile}/>
-      <Route exact path="/TableList" component={TableList}/>
-      <Redirect from="/" to="/parent/dashboard" />
-    </Switch>
-  </Router>,
+  <Router history={hist}> 
+       <Switch>
+    <App/>
+        </Switch>    
+  </Router>,  
   document.getElementById("root")
 );
+
