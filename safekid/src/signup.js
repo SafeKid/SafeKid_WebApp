@@ -14,7 +14,8 @@ function Signup(props) {
     const [lastname, setLastName] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const [confirmpassword, setCpass] = useState('')
+    const [confirmpassword, setCpass] = useState('')
+    const [par, p] = useState('')
        
        return(
        <div
@@ -37,29 +38,35 @@ function Signup(props) {
                 <div className = {'lBox'}>
                     <div className = {'bo'}>
                         <div className={'titleAth'}>REGISTER</div>
-                        
+                        <form>
                         <div className = {'inputBox'}>
                             <label>First name:</label>
-                            <input className={'input'} type={'text'} value={firstname} onChange={e => setFirstName(e.target.value)}/>
+                            <input name={'firstname'} className={'input'} type={'text'} value={firstname} onChange={e => setFirstName(e.target.value)}/>
                         </div>
                         <div className = {'inputBox'}>
                              <label>Last Name:</label>
-                            <input className={'input'} type={'text'} value={lastname} onChange={e => setLastName(e.target.value)}/>
+                            <input name={'lastname'} className={'input'} type={'text'} value={lastname} onChange={e => setLastName(e.target.value)}required/>
                         </div>
                         <div className = {'inputBox'}>
                             <label>Email:</label>
-                            <input className={'input'} type={'email'} value={email} onChange={e => setEmail(e.target.value)}/>
+                            <input className={'input'} type={'email'} value={email} onChange={e => setEmail(e.target.value)}required/>
                         </div>
                         <div className = {'inputBox'}>
                             <label>Password:</label>
-                            <input className={'input'} type={'password'} value={password} onChange={e => setPassword(e.target.value)}/>
+                            <input className={'input'} type={'password'} value={password} onChange={e => setPassword(e.target.value)}required/>
                         </div>
                         <div className = {'inputBox'}>
                             <label>Confirm Password:</label>
-                            <input className={'input'} type={'password'} value={confirmpassword} onChange={e => setCpass(e.target.value)}/>
+                            <input className={'input'} type={'password'} value={confirmpassword} onChange={e => setCpass(e.target.value)}required/>
                         </div>
+                        <div>
+                            <input type={'hidden'} name="role" value={"p"}/>
+                        </div>
+                        
                         <div className={'btnAth'} onClick={register}>Register</div>
                         <div className={'text'}>Already a Member? <Link to="/signin">Sign in</Link></div>
+
+                        </form>
                         </div>
                 </div>
             </div>
@@ -70,7 +77,7 @@ function Signup(props) {
         )
         async function register() {
             try {
-                await fire.register(firstname,lastname, email, password,confirmpassword)
+                await fire.register(firstname,lastname, email, password,confirmpassword,p)
                 props.history.replace('/parent/dashboard')
             } catch(error) {
                 alert(error.message)

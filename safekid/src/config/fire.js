@@ -30,7 +30,7 @@ import "firebase/firestore";
         return this.auth.signOut()
     }
 
-    async register(firstname,lastname,email,password,confirmpassword) {
+    async register(firstname,lastname,email,password,confirmpassword,p) {
       await this.auth.createUserWithEmailAndPassword(email, password)
       return this.auth.currentUser.updateProfile({
         displayName: lastname

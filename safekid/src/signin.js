@@ -47,7 +47,7 @@ function Signin(props) {
                             type={'email'} 
                             placeholder={'Email'}
                             onChange={e => setEmail(e.target.value)}
-                            value={email}
+                            value={email}required
                             />
                       </div>
                       <div className = {'inputSBox'}>
@@ -57,7 +57,7 @@ function Signin(props) {
                             type={'password'} 
                             placeholder={'Password'}
                             onChange={e => setPassword(e.target.value)}
-                            value={password}
+                            value={password}required
                             />
                       </div>
                       <div className={'contentBox'}>
@@ -67,7 +67,7 @@ function Signin(props) {
                       </div>
                       <div className={'text1'}>Forgot Password?</div>
                       </div>
-                      <div class="Button"
+                      <div className="Button"
                      
                       onClick={signin}>
                           Login </div><br/>
@@ -83,7 +83,12 @@ function Signin(props) {
   async function signin() {
     try {
         await fire.signin(email, password)
-        props.history.replace('parent/dashboard')
+        { fire.getCurrentUsername() }
+        if (fire.userrole != null) {
+            props.history.replace('parent/dashboard')
+        } else {
+            props.history.replace('signup')
+        }
     } catch(error) {
         alert(error.message)
     }
