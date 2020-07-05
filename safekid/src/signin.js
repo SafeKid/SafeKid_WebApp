@@ -5,9 +5,9 @@ import fire from 'config/fire';
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 import SnackBar from '@material-ui/core/SnackBar';
 import IconButton from '@material-ui/core/IconButton';
-
+import logo from "assets/img/reactlogo.png";
 import './signin.css';
-
+import Alert from "components/alert";
 
 const useStyles = makeStyles(styles);
 
@@ -16,6 +16,10 @@ function Signin(props) {
        const {classes} =[useStyles(),props]
        const [email, setEmail] =useState('')
        const [password, setPassword] =useState('')
+
+       const [errorMessage, setErrorMessage] = useState('')
+
+       const handleChange= (e) => {setEmail(e.target.value)}
 
     return(
             <div
@@ -34,11 +38,11 @@ function Signin(props) {
                     <div className = {'imageAuth'}/>
                     <div className = {'imageText bold style1'}>SafeKid</div>
                     <div className = {'imageText style2'}>Making the world a safer place to your child</div>
+                    <div className={'imageText style3'}>Don't have an account?  <Link style={{color:"#c2b0eb", fontWeight:"bold"}} to="/signup">Sign up</Link></div>
                 </div>
                 <div className = {'rightBox'}>
-                <br/>
+                <img className="logo-img" src={logo} ALT="align box" ALIGN="right"></img>
                     <div className = {'box'}>
-                
                         <div className={'titleAuth'}>LOGIN</div>
                         <div className = {'inputSBox'}>
                             <input 
@@ -46,7 +50,7 @@ function Signin(props) {
                             name={'email'}
                             type={'email'} 
                             placeholder={'Email'}
-                            onChange={e => setEmail(e.target.value)}
+                            onChange={handleChange}
                             value={email}required
                             />
                       </div>
@@ -67,32 +71,29 @@ function Signin(props) {
                       </div>
                       <div className={'text1'}>Forgot Password?</div>
                       </div>
-                      <div className="Button"
+                      <button className="Button"
                      
                       onClick={signin}>
-                          Login </div><br/>
-                      <div className={'text'}>Don't have an account?  <Link to="/signup">Sign up</Link></div>
-                 
+                          Login </button>
                     </div>
+                    {errorMessage &&
+            <Alert type ="error" message={errorMessage} autoClose={5000}/>  }
                 </div>
-            </div>  
-       </div>
-    </div>       
+            </div> 
+       </div>      
+    </div>   
   )
 
   async function signin() {
-    try {
+    try { setErrorMessage('')
         await fire.signin(email, password)
-        { fire.getCurrentUsername() }
-        if (fire.userrole != null) {
-            props.history.replace('parent/dashboard')
-        } else {
-            props.history.replace('signup')
-        }
+        props.history.replace('/parent/dashboard')
     } catch(error) {
-        alert(error.message)
+       // alert(error.message)
+       setErrorMessage(error.message)
     }
-}
+    }
+    
 }
 
 export default withRouter(withStyles(styles)(Signin))

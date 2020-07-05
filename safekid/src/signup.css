@@ -2,7 +2,7 @@
   width: 800px;
   overflow: hidden;
   padding-left: 20%;
-  padding-top: 10%;
+  padding-top: 4%;
 }
 
 .rBox{
@@ -55,6 +55,12 @@
   left: 20px;
 }
 
+.imageText.style3{
+  top: 450px;
+  left: 30px;
+  font-size: 17px;
+}
+
 .lBox{
   width: 453px;
   height: 538px;
@@ -66,7 +72,8 @@
 .bo{
   width: 310px;
   height: 415px;
-  margin: 32px auto;
+  margin-top: 110px;
+  padding-left:50px;
 }
 
 .titleAth{

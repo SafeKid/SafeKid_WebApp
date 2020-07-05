@@ -32,6 +32,8 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import carfix from "assets/img/cp.png";
 import  "views/Image.css"
+import avatar from "assets/img/faces/marc.jpg";
+import CardAvatar from "components/Card/CardAvatar.js";
 import fire from "config/fire";
 
 
@@ -61,13 +63,23 @@ export default function Dashboard(props) {
     <div>
       <GridContainer>
         
-      <GridItem xs={15} sm={6} md={4}>
+      <GridItem xs={15} sm={6} md={6}>
            
           </GridItem>
-          <h4>
+          <GridItem   xs={10} sm={10} md={3} >
+          <Card profile >
+            <CardAvatar profile>
+              <a href="#pablo" onClick={e => e.preventDefault()}>
+                <img src={avatar} alt="..." />
+              </a>
+            </CardAvatar>
+            <CardBody>
+            <h4>
 					Hello { fire.getCurrentUsername() }
           </h4>
-
+          </CardBody>
+          </Card>
+        </GridItem>
          
         {/* <GridItem xs={12} sm={6} md={3}>
           <Card>
