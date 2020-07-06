@@ -102,7 +102,6 @@ export default function Sidebar(props) {
     <div>
       <Hidden mdUp implementation="css">
         <Drawer
-          variant="#"
           anchor={props.rtlActive ? "left" : "right"}
           open={props.open}
           classes={{

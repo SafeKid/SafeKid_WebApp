@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import logo from "assets/img/reactlogo.png";
 import './signin.css';
 import Alert from "components/alert";
+import Button from "components/CustomButtons/Button.js";
 
 const useStyles = makeStyles(styles);
 
@@ -41,7 +42,7 @@ function Signin(props) {
                     <div className={'imageText style3'}>Don't have an account?  <Link style={{color:"#c2b0eb", fontWeight:"bold"}} to="/signup">Sign up</Link></div>
                 </div>
                 <div className = {'rightBox'}>
-                <img className="logo-img" src={logo} ALT="align box" ALIGN="right"></img>
+                <img className="logo-img" src={logo} align="right"></img>
                     <div className = {'box'}>
                         <div className={'titleAuth'}>LOGIN</div>
                         <div className = {'inputSBox'}>
@@ -71,10 +72,10 @@ function Signin(props) {
                       </div>
                       <div className={'text1'}>Forgot Password?</div>
                       </div>
-                      <button className="Button"
+                      <Button className="Button"
                      
                       onClick={signin}>
-                          Login </button>
+                          Login </Button>
                     </div>
                     {errorMessage &&
             <Alert type ="error" message={errorMessage} autoClose={5000}/>  }

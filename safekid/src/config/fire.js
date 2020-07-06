@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
-import "firebase/firestore";
+import "firebase/database";
 
 
   var firebaseConfig = {
@@ -18,7 +18,7 @@ import "firebase/firestore";
     constructor(){
         firebase.initializeApp(firebaseConfig)
         this.auth=firebase.auth()
-        this.db=firebase.firestore()
+        this.db=firebase.database()
         
     }
 
@@ -30,8 +30,17 @@ import "firebase/firestore";
         return this.auth.signOut()
     }
 
-    async register(firstname,lastname,email,password,confirmpassword,p) {
-      await this.auth.createUserWithEmailAndPassword(email, password)
+    async register(firstname,lastname,email,password,confirmpassword,par) {
+      await this.auth.createUserWithEmailAndPassword(email, password).then(response => {
+        this.db.ref('Users/' + response.user.uid)
+       .set({
+        firstname:firstname,
+        lastname:lastname,
+        email:email,
+        role:par
+       })})
+     
+
       return this.auth.currentUser.updateProfile({
         displayName: lastname
       })

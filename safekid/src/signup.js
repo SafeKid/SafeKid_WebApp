@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { makeStyles, withStyles } from "@material-ui/core/styles";
+import Button from "components/CustomButtons/Button.js";
 import fire from 'config/fire';
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
-import {Link, withRouter} from 'react-router-dom';
+import {Link, withRouter, Redirect} from 'react-router-dom';
 import logo from "assets/img/reactlogo.png";
 import './signup.css';
 import Alert from "components/alert";
@@ -17,13 +18,13 @@ function Signup(props) {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
     const [confirmpassword, setCpass] = useState('')
-    const [par, p] = useState('')
+    const [par, setp] = useState('par')
 
 
     const [alertMessage, setAlertMessage] = useState(null)
 
     const handleChange= (e) => {setEmail(e.target.value)}
-       
+
        return(
        <div
         className="App"
@@ -44,17 +45,17 @@ function Signup(props) {
                     <div className={'imageText style3'}>Already a Member? <Link style={{color:"#c2b0eb", fontWeight:"bold"}} to="/">Sign in</Link></div>
                 </div>
                 <div className = {'lBox'}>
-                <img className="logo-img" src={logo} ALT="align box" ALIGN="right"></img>
+                <img className="logo-img" src={logo} alt="align box" align="right"></img>
                     <div className = {'bo'}>
                         <div className={'titleAth'}>REGISTER</div>
-                        <form action="" method="POST" id="registrationform">
+                     
                         <div className = {'inputBox'}>
                             <label>First name:</label>
                             <input name={'firstname'} id="validationDefault01" className={'input'} type={'text'} value={firstname} onChange={e => setFirstName(e.target.value)}/>
                         </div>
                         <div className = {'inputBox'}>
                              <label>Last Name:</label>
-                            <input name={'lastname'} className={'input'} type={'text'} value={handleChange} onChange={e => setLastName(e.target.value)}required/>
+                            <input name={'lastname'} className={'input'} type={'text'} value={lastname} onChange={e => setLastName(e.target.value)}required/>
                         </div>
                         <div className = {'inputBox'}>
                             <label>Email:</label>
@@ -62,20 +63,20 @@ function Signup(props) {
                         </div>
                         <div className = {'inputBox'}>
                             <label>Password:</label>
-                            <input className={'input'} type={'password'} value={password} onChange={e => setPassword(e.target.value)}required/>
+                            <input id="pw" className={'input'} type={'password'} value={password} onChange={e => setPassword(e.target.value)}required/>
                         </div>
                         <div className = {'inputBox'}>
                             <label>Confirm Password:</label>
-                            <input className={'input'} type={'password'} value={confirmpassword} onChange={e => setCpass(e.target.value)}required/>
+                            <input id="cpw" className={'input'} type={'password'} value={confirmpassword} onChange={e => setCpass(e.target.value)}required/>
                         </div>
                         <div>
-                            <input type={'hidden'} name="role" value={par}/>
+                            <input type={'hidden'} name="role" value={par} onChange={e => setp(e.target.value)}/>
                         </div>
                         
-                        <button className={'btnAth'} onClick={register}>Register</button>
+                        <Button className={'btnAth'} onClick={register}>Register</Button>
                         
 
-                        </form>
+                 
                         </div>
                         {alertMessage &&
             <Alert type ={alertMessage.type} message={alertMessage.message} autoClose={5000}/>  }
@@ -88,23 +89,25 @@ function Signup(props) {
               
         )
         async function register() {
-            try { setAlertMessage(null)
-                await fire.register(firstname,lastname, email, password,confirmpassword,par)
-                setAlertMessage({
-                    type:'success',
-                    message:'Welcome to SafeKid'
-                })
-
-                props.history.replace('/parent/dashboard')
-            } catch(error) {
-                //alert(error.message)
+                try { setAlertMessage(null)
+                    if(password!=confirmpassword){
+                        setAlertMessage({
+                            type:'error',
+                            message:'Passwords must be same'
+                        })
+                        return
+                      } 
+                    await fire.register(firstname,lastname,email, password,confirmpassword,par)
+                    props.history.replace('/parent/dashboard')
+                } catch(error) {
+                   // alert(error.message)
                 setAlertMessage({
                     type:'error',
                     message:error.message
                 })
             }
         }
+        
     }
 
 export default withRouter(withStyles(styles)(Signup))
-    

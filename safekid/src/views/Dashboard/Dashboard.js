@@ -63,7 +63,7 @@ export default function Dashboard(props) {
     <div>
       <GridContainer>
         
-      <GridItem xs={15} sm={6} md={6}>
+      <GridItem xs={12} sm={6} md={6}>
            
           </GridItem>
           <GridItem   xs={10} sm={10} md={3} >
