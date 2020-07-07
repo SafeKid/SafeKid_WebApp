@@ -1,4 +1,4 @@
-import firebase from "firebase/app";
+import firebase from "firebase";
 import "firebase/auth";
 import "firebase/database";
 
@@ -13,6 +13,7 @@ import "firebase/database";
     appId: "1:1064185719790:web:6ebcadd6266fa510b1fcff",
     measurementId: "G-NVTN14GYXW"
   };
+  
   // Initialize Firebase
   class fire{
     constructor(){
@@ -59,3 +60,5 @@ import "firebase/database";
   
 
   export default new fire()
+  export const db = firebase.database();
+  export const auth = firebase.auth();

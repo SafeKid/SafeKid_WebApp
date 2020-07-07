@@ -31,7 +31,16 @@ const styles = {
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
     marginBottom: "3px",
     textDecoration: "none"
-  }
+  },
+
+  root: {
+    '& > *': {
+      margin: 1,
+    },
+  },
+  input: {
+    display: 'none',
+  },
 };
 
 const useStyles = makeStyles(styles);
@@ -94,6 +103,27 @@ export default function UserProfile() {
                   />
                 </GridItem>
               </GridContainer>
+
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={5}>
+                  <CustomInput
+                    labelText="Child Name"
+                    id="first-name"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={5}>
+                  <CustomInput
+                    labelText="Child Age"
+                    id="last-name"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+              </GridContainer>
             
             </CardBody>
             <CardFooter>
@@ -109,12 +139,25 @@ export default function UserProfile() {
                 <img src={avatar} alt="..." />
               </a>
             </CardAvatar>
-            <CardBody profile>
-              <h4 className={classes.cardTitle}>Alec Thompson</h4>
-              <p className={classes.description}>
-               
-              </p>
-             
+            <CardBody>
+            
+            
+            <div className={classes.root}>
+      <input
+        accept="image/*"
+        className={classes.input}
+        id="contained-button-file"
+        multiple
+        type="file"
+      />
+      <label htmlFor="contained-button-file">
+        <Button variant="contained" color="primary" component="span">
+          Upload
+        </Button>
+      </label>
+    </div>
+  
+ 
             </CardBody>
           </Card>
         </GridItem>
