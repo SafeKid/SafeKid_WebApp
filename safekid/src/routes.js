@@ -18,6 +18,8 @@ import NotificationsPage from "views/Notifications/Notifications.js";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.js";
 // core components/views for RTL layout
 import RTLPage from "views/RTLPage/RTLPage.js";
+//import AddDevice from 'components/Devices/DeviceCounter.jsx';
+import AboutPage from 'views/AboutUs/AboutPage.js'
 
 const dashboardRoutes = [
   {
@@ -78,6 +80,14 @@ const dashboardRoutes = [
       rtlName: "خرائط",
       icon: "message",
       component: TableList,
+      layout: "/parent"
+    },
+    {
+      path: "/AboutUs",
+      name: "About Us",
+      rtlName: "لوحة القيادة",
+      icon: "About",
+      component: AboutPage,
       layout: "/parent"
     },
     // {
