@@ -23,7 +23,12 @@ function Signup(props) {
 
     const [alertMessage, setAlertMessage] = useState(null)
 
-    const handleChange= (e) => {setEmail(e.target.value)}
+    const handleChange= (e) => 
+    {setEmail(e.target.value)}
+    
+const handleSubmit = (e) => {
+    e.preventDefault();}
+
 
        return(
        <div
@@ -48,7 +53,7 @@ function Signup(props) {
                 <img className="logo-img" src={logo} alt="align box" align="right"></img>
                     <div className = {'bo'}>
                         <div className={'titleAth'}>REGISTER</div>
-                     
+                     <form onSubmit={handleSubmit}>
                         <div className = {'inputBox'}>
                             <label>First name:</label>
                             <input name={'firstname'} id="validationDefault01" className={'input'} type={'text'} value={firstname} onChange={e => setFirstName(e.target.value)}/>
@@ -73,9 +78,9 @@ function Signup(props) {
                             <input type={'hidden'} name="role" value={par} onChange={e => setp(e.target.value)}/>
                         </div>
                         
-                        <Button className={'btnAth'} onClick={register}>Register</Button>
+                        <Button className={'btnAth'} style={{backgroundColor:"#2e2d2d", fontWeight:"bold"}} onClick={register}>Register</Button>
                         
-
+                        </form>
                  
                         </div>
                         {alertMessage &&
@@ -89,13 +94,15 @@ function Signup(props) {
               
         )
         async function register() {
+            
                 try { setAlertMessage(null)
+                    
                     if(password!=confirmpassword){
                         setAlertMessage({
                             type:'error',
                             message:'Passwords must be same'
                         })
-                        return
+                        return false;
                       } 
                     await fire.register(firstname,lastname,email, password,confirmpassword,par)
                     props.history.replace('/parent/dashboard')

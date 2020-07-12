@@ -72,7 +72,7 @@ function Signin(props) {
                       </div>
                       <div className={'text1'}>Forgot Password?</div>
                       </div>
-                      <Button className="Button"
+                      <Button className="Button" style={{backgroundColor:"#2e2d2d", fontWeight:"bold"}}
                      
                       onClick={signin}>
                           Login </Button>
