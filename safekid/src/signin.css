@@ -1,5 +1,7 @@
 .authBox{
     width: 800px;
+    min-zoom: 50%;
+   
   }
   
   .leftBox{
@@ -8,6 +10,7 @@
     float: left;
     position: relative;
     display: block;
+    
   }
   
   .bgBlue{
@@ -61,6 +64,7 @@
     float: right;
     border: 1px solid #2f088a;
     background-color: #ffffff;
+    
   }
 
   .logo-img{
@@ -150,4 +154,28 @@
   .text{
    margin-top: 35px;
   }
+  
+  
+
+ @media screen and (min-width: 800px){
+
+    .authBox{
+      width: 100%;
+    }
+
+    .leftBox{
+      width: 345px;
+      float:left;
+    }
+
+    .rightBox{
+      width: 452.5px;
+      border: 0.5;
+      float:right;
+      
+    }
+
+    
+  }
+
   

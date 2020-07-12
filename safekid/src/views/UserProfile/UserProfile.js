@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -14,6 +14,8 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import carfix from "assets/img/cp.png";
 import avatar from "assets/img/faces/marc.jpg";
+import { db,auth } from 'config/fire';
+import Alert from "components/alert";
 
 const styles = {
   cardCategoryWhite: {
@@ -45,8 +47,69 @@ const styles = {
 
 const useStyles = makeStyles(styles);
 
+
 export default function UserProfile() {
   const classes = useStyles();
+
+ 
+  const [firstname, setFirstName] = useState('')
+  const [lastname, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [mobno, setMobno] = useState('')
+  const [childname, setChildname] = useState('')
+  const [childage, setChildage] = useState('')
+  const [alertMessage, setAlertMessage] = useState(null)
+
+  
+const handleUpdate = (e) => {
+  e.preventDefault()
+
+  try {
+     setAlertMessage(null)
+  db.ref('Users/' + auth.currentUser.uid)
+.update({
+        firstname:firstname,
+        lastname:lastname,
+       // email:email,
+        mobno:mobno,
+        childname:childname,
+        childage:childage,
+
+       })
+       setAlertMessage({
+        type:'success',
+        message:"updated successfully"
+    })
+
+      }catch(error) {
+                   // alert(error.message)
+                setAlertMessage({
+                    type:'error',
+                    message:"couldn't update"
+                })
+            }}
+
+ React.useEffect(() => { fetchData()},[])
+
+ function fetchData(){
+  db.ref('Users/' + auth.currentUser.uid).on('value',(snapshot) => {
+    let rows=[];
+    if(snapshot.exists()){
+      
+        let user = snapshot.val();
+        user.uid = snapshot.key;
+
+        setFirstName(user.firstname);
+        setLastName(user.lastname);
+        setEmail(user.email);
+        setMobno(user.mobno);
+        setChildname(user.childname);
+        setChildage(user.childage);
+       
+    }
+    })
+  }
+   
   return (
     <div
     className="App"
@@ -63,31 +126,46 @@ export default function UserProfile() {
               <p className={classes.cardCategoryWhite}>Complete your profile</p>
             </CardHeader>
             <CardBody>
+           
               <GridContainer>
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
                     labelText="First Name"
-                    id="username"
+                    id="firstname"
+                    value= {firstname}
+                    onChange={e => setFirstName(e.target.value)}
                     formControlProps={{
-                      fullWidth: true
+                      fullWidth: true,
+                    
+                     
                     }}
+                    
+                  
                   />
+                  
                 </GridItem>
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
                     labelText="Last Name"
-                    id="email-address"
+                    id="lastname"
+                    value= {lastname}
+                    onChange={e => setLastName(e.target.value)}
                     formControlProps={{
                       fullWidth: true
                     }}
+                    
                   />
                 </GridItem>
               </GridContainer>
+            
               <GridContainer>
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
                     labelText="Email Address"
-                    id="first-name"
+                    id="email"
+                    type="email"
+                    value= {email}
+                   // onChange={e => setEmail(e.target.value)}
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -95,8 +173,10 @@ export default function UserProfile() {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
-                    labelText="Mobile No"
-                    id="last-name"
+                    labelText="Phone Number"
+                    id="pno"
+                    value= {mobno}
+                    onChange={e => setMobno(e.target.value)}
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -108,7 +188,9 @@ export default function UserProfile() {
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
                     labelText="Child Name"
-                    id="first-name"
+                    id="childname"
+                    value= {childname}
+                    onChange={e => setChildname(e.target.value)}
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -117,17 +199,19 @@ export default function UserProfile() {
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
                     labelText="Child Age"
-                    id="last-name"
+                    id="childage"
+                    value= {childage}
+                    onChange={e => setChildage(e.target.value)}
                     formControlProps={{
                       fullWidth: true
                     }}
                   />
                 </GridItem>
               </GridContainer>
-            
+     
             </CardBody>
             <CardFooter>
-              <Button color="primary">Update Profile</Button><br/>
+              <Button color="primary" onClick={handleUpdate}>Update Profile</Button><br/>
               <br/>
             </CardFooter>
           </Card>
@@ -152,7 +236,7 @@ export default function UserProfile() {
       />
       <label htmlFor="contained-button-file">
         <Button variant="contained" color="primary" component="span">
-          Upload
+          Choose
         </Button>
       </label>
     </div>
@@ -164,6 +248,9 @@ export default function UserProfile() {
       </GridContainer>
     </div>
     </div>
+    {alertMessage &&
+            <Alert type ={alertMessage.type} message={alertMessage.message} autoClose={5000}/>  }
     </div>
   );
+  
 }
