@@ -97,7 +97,7 @@ React.useEffect(() => [
   <br/><br/>
   <div>
       {rows.map(rows => {
-          return <p key={rows.date}>{rows.description}</p>
+          return <p key={rows.date}>{rows.case}</p>
         })}
     </div>
   <br/><br/>

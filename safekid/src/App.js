@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Signin from './signin';
 import Signup from './signup';
+import ResetPwd from './resetpwd';
 import parent from "layouts/parent.js";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import Dashboard from 'views/Dashboard/Dashboard';
@@ -26,6 +27,7 @@ export default function App() {
        <Switch> 
       <Route exact path="/" component={Signin}/>
       <Route path="/signup" component={Signup}/>
+      <Route path="/resetpwd" component={ResetPwd}/>
       <Route path="/parent" component={parent} />
       <Route path="/Dashboard" component={Dashboard}/>
         </Switch>    

@@ -10,6 +10,7 @@ import Language from "@material-ui/icons/Language";
 // core components/views for Admin layout
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
+import Contact from "views/Contact/contactA.js";
 import TableList from "views/TableList/TableList.js";
 import PrevCases from "views/PrevCases/PrevCases.js";
 import Icons from "views/Icons/Icons.js";
@@ -79,7 +80,7 @@ const dashboardRoutes = [
       name: "Contact Admin",
       rtlName: "خرائط",
       icon: "message",
-      component: TableList,
+      component: Contact,
       layout: "/parent"
     },
     {

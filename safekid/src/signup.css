@@ -1,8 +1,7 @@
 .authBox{
   width: 800px;
   overflow: hidden;
-  padding-left: 20%;
-  padding-top: 4%;
+  margin: 80px auto 30px;
 }
 
 .rBox{
@@ -118,3 +117,49 @@
 .text3{
  margin-top: 35px;
 }
+
+@media screen and (min-width: 1400px){
+  
+    .rBox{
+      width: 344.5px;
+      float: right;
+    }
+
+    .lBox{
+      width: 453px;
+      border: 0.5;
+      float:left;  
+    }
+    
+  }
+
+  @media screen and (min-width: 1800px){
+
+   
+    .rBox{
+      width: 344.5px;
+      float: right;
+    }
+
+    .lBox{
+      width: 452.5px;
+      border: 0.5;
+      float:left;  
+    }
+    
+  }
+
+  
+  @media screen and (min-width: 2600px){
+
+    .rBox{
+      display: none;
+    }
+
+    .lBox{
+      width: 452px;
+      border: 0.5;
+      float:center;  
+    }
+    
+  }

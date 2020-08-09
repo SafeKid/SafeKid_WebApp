@@ -19,6 +19,7 @@ function Signup(props) {
 	const [password, setPassword] = useState('')
     const [confirmpassword, setCpass] = useState('')
     const [par, setp] = useState('par')
+    const [images, setimages] = useState('')
 
 
     const [alertMessage, setAlertMessage] = useState(null)
@@ -31,13 +32,13 @@ const handleSubmit = (e) => {
 
 
        return(
-       <div
+      /* <div
         className="App"
         style={{
           backgroundColor: "#ffffff",
           width:"100%",
           height:"1oo%"
-        }}>
+        }}>*/
 
          <div className="wrapper">
               
@@ -77,7 +78,9 @@ const handleSubmit = (e) => {
                         <div>
                             <input type={'hidden'} name="role" value={par} onChange={e => setp(e.target.value)}/>
                         </div>
-                        
+                        <div>
+                            <input type={'hidden'} name="images" />
+                        </div>
                         <Button className={'btnAth'} style={{backgroundColor:"#2e2d2d", fontWeight:"bold"}} onClick={register}>Register</Button>
                         
                         </form>
@@ -89,9 +92,7 @@ const handleSubmit = (e) => {
             </div>
         
               </div>
-              
-              </div>
-              
+             
         )
         async function register() {
             
@@ -102,9 +103,9 @@ const handleSubmit = (e) => {
                             type:'error',
                             message:'Passwords must be same'
                         })
-                        return false;
+                        return;
                       } 
-                    await fire.register(firstname,lastname,email, password,confirmpassword,par)
+                    await fire.register(firstname,lastname,email, password,confirmpassword,par,images)
                     props.history.replace('/parent/dashboard')
                 } catch(error) {
                    // alert(error.message)

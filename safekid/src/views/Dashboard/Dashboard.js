@@ -34,16 +34,9 @@ import carfix from "assets/img/cp.png";
 import  "views/Image.css"
 import avatar from "assets/img/faces/marc.jpg";
 import CardAvatar from "components/Card/CardAvatar.js";
+import { db,auth,storage } from 'config/fire';
 import fire from "config/fire";
 
-
-import { bugs, website, server } from "variables/general.js";
-
-import {
-  dailySalesChart,
-  emailsSubscriptionChart,
-  completedTasksChart
-} from "variables/charts.js";
 
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
 
@@ -52,7 +45,25 @@ const useStyles = makeStyles(styles);
 export default function Dashboard(props) {
 
   const {classes} =props
+  const [imageAsUrl, setImageAsUrl] = React.useState(avatar)
 
+
+  React.useEffect(() => { fetchData()},[])
+
+  function fetchData(){
+   db.ref('Users/' + auth.currentUser.uid).on('value',(snapshot) => {
+     let rows=[];
+     if(snapshot.exists()){
+       
+         let user = snapshot.val();
+         user.uid = snapshot.key;
+         setImageAsUrl(user.images)
+        
+     }
+     })
+ 
+     
+   }
   return (
     <div
     className="App"
@@ -70,7 +81,7 @@ export default function Dashboard(props) {
           <Card profile >
             <CardAvatar profile>
               <a href="#pablo" onClick={e => e.preventDefault()}>
-                <img src={avatar} alt="..." />
+              <img src={imageAsUrl} alt={""} />
               </a>
             </CardAvatar>
             <CardBody>

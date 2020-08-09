@@ -14,7 +14,7 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import carfix from "assets/img/cp.png";
 import avatar from "assets/img/faces/marc.jpg";
-import { db,auth } from 'config/fire';
+import { db,auth,storage } from 'config/fire';
 import Alert from "components/alert";
 
 const styles = {
@@ -59,6 +59,40 @@ export default function UserProfile() {
   const [childname, setChildname] = useState('')
   const [childage, setChildage] = useState('')
   const [alertMessage, setAlertMessage] = useState(null)
+
+
+    const [imageAsFile, setImageAsFile] = useState('')
+    const [imageAsUrl, setImageAsUrl] = useState(avatar)
+
+    console.log(imageAsFile)
+
+     const handleFireBaseUpload = e => {
+      e.preventDefault()
+    console.log('start of upload')
+    // async magic goes here...
+    if(imageAsFile === '') {
+      console.error(`not an image, the image file is a ${typeof(imageAsFile)}`)
+    }
+    const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
+    //initiates the firebase side uploading 
+    uploadTask.on('state_changed', 
+    (snapShot) => {
+      //takes a snap shot of the process as it is happening
+      console.log(snapShot)
+    }, (err) => {
+      //catches the errors
+      console.log(err)
+    }, () => {
+      // gets the functions from storage refences the image storage in firebase by the children
+      // gets the download url then sets the image from firebase as the value for the imgUrl key:
+      storage.ref('images').child(imageAsFile.name).getDownloadURL()
+       .then(fireBaseUrl => {
+         setImageAsUrl(prevObject => ({...prevObject, imageAsUrl: fireBaseUrl}))
+         db.ref('Users/' + auth.currentUser.uid + '/images').set(fireBaseUrl);
+       })
+    })
+    }
+
 
   
 const handleUpdate = (e) => {
@@ -105,9 +139,12 @@ const handleUpdate = (e) => {
         setMobno(user.mobno);
         setChildname(user.childname);
         setChildage(user.childage);
+        setImageAsUrl(user.images)
        
     }
     })
+
+    
   }
    
   return (
@@ -219,9 +256,9 @@ const handleUpdate = (e) => {
         <GridItem   xs={10} sm={10} md={3} >
           <Card profile >
             <CardAvatar profile>
-              <a href="#pablo" onClick={e => e.preventDefault()}>
-                <img src={avatar} alt="..." />
-              </a>
+            <label htmlFor="contained-image-file">
+                <img src={imageAsUrl} alt={""} style={{cursor:"pointer"}}/>
+              </label>
             </CardAvatar>
             <CardBody>
             
@@ -230,16 +267,17 @@ const handleUpdate = (e) => {
       <input
         accept="image/*"
         className={classes.input}
-        id="contained-button-file"
-        multiple
+        id="contained-image-file"
         type="file"
+        onChange={e => setImageAsFile(e.target.files[0])}
       />
-      <label htmlFor="contained-button-file">
-        <Button variant="contained" color="primary" component="span">
-          Choose
+      
+        <Button onClick={handleFireBaseUpload} color="primary" >
+          Upload
         </Button>
-      </label>
+     
     </div>
+    
   
  
             </CardBody>

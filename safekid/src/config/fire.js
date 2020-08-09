@@ -1,6 +1,7 @@
 import firebase from "firebase";
 import "firebase/auth";
 import "firebase/database";
+import "firebase/storage";
 
 
   var firebaseConfig = {
@@ -20,7 +21,7 @@ import "firebase/database";
         firebase.initializeApp(firebaseConfig)
         this.auth=firebase.auth()
         this.db=firebase.database()
-        
+        this.storage=firebase.storage()
     }
 
     signin(email, password){
@@ -31,14 +32,15 @@ import "firebase/database";
         return this.auth.signOut()
     }
 
-    async register(firstname,lastname,email,password,confirmpassword,par) {
+    async register(firstname,lastname,email,password,confirmpassword,par,images) {
       await this.auth.createUserWithEmailAndPassword(email, password).then(response => {
         this.db.ref('Users/' + response.user.uid)
        .set({
         firstname:firstname,
         lastname:lastname,
         email:email,
-        role:par
+        role:par,
+        images:"https://firebasestorage.googleapis.com/v0/b/safekid-demo-b3e44.appspot.com/o/images%2Fmarc.jpg?alt=media&token=9147f0f5-2c53-4cc5-84d8-feff5852aaca"
        })})
      
 
@@ -62,3 +64,4 @@ import "firebase/database";
   export default new fire()
   export const db = firebase.database();
   export const auth = firebase.auth();
+  export const storage = firebase.storage();
