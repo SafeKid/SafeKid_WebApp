@@ -8,6 +8,7 @@ import Dashboard from 'views/Dashboard/Dashboard';
 import { CircularProgress } from '@material-ui/core';
 import fire from 'config/fire';
 import { createBrowserHistory } from "history";
+//import {Devices} from './components/Devices/DeviceCounter'
 
 const hist = createBrowserHistory();
 
@@ -30,6 +31,7 @@ export default function App() {
       <Route path="/resetpwd" component={ResetPwd}/>
       <Route path="/parent" component={parent} />
       <Route path="/Dashboard" component={Dashboard}/>
+  
         </Switch>    
   </Router>  
           
