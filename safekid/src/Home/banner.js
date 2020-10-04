@@ -25,7 +25,7 @@ render(){
                 <img src={img1} alt="img1"/>
                 <div className="caption center-align">
                 <div className=" white-text hide-on-small-only">
-                    <h2><br/><br/><br/><b>Be There For Your Children,<br/> Even When You're Apart..</b></h2>
+                    <h2><br/><br/><br/><b><i>Be There For Your Children,<br/> Even When You're Apart..</i></b></h2>
                 </div>
                 </div>
             </li>
@@ -34,7 +34,7 @@ render(){
                 <img src={img2} alt="img2" />
                 <div className="caption right-align">
                 <div className="white-text hide-on-small-only">
-                <h2><br/><br/><b>Now, Never let them out <br/>of your sight again..</b></h2>
+                <h2><br/><br/><b><i>Now, Never let them out <br/>of your sight again..</i></b></h2>
                 </div>
                 </div>
             </li>
@@ -43,7 +43,7 @@ render(){
                 <img src={img4} alt="img3"/>
                 <div className="caption right-align">
                 <div className="white-text hide-on-small-only">
-                    <h2><br/><br/><br/><b>Stay connected to your children,<br/>No matter where you are..</b></h2>
+                    <h2><br/><br/><br/><b><i>Stay connected to your children,<br/>No matter where you are..</i></b></h2>
                 </div>
                 </div>
             </li>

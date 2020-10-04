@@ -86,7 +86,7 @@ function ResetPwd(props) {
     
 
     async function fun(){
-        props.history.push("/")
+        props.history.push("signin")
     }
 }
 

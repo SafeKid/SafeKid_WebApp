@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import '../../node_modules/materialize-css/dist/css/materialize.css';
-import AnchorLink from 'react-anchor-link-smooth-scroll'
-import M from  'materialize-css/dist/js/materialize.min.js';
-import {Link, withRouter, Redirect} from 'react-router-dom';
+import logo from "assets/img/reactlogo.png";
+
 
 export default class About extends Component{
 
@@ -13,12 +12,20 @@ render(){
            
                 
                 <div className="row">
-                <h3 className="center">
-                    <span className="purple-text darken-2"><b>WHAT IS </b></span><i>SafeKid </i>?
-                    <div className="center" style={{fontSize:"25px"}}>
+                <h3 className="center ">
+                <div className="col s12 m6">
+                    <span className="grey-text darken-4"><b><i>WHAT IS </i></b></span><i>SafeKid </i>?
+                    <div className="" style={{fontSize:"25px"}}>
+                   
                     <p>SafeKid is a web and mobile based application that will allow the parents to keep track of their children when their child is out of their view. And a wearable device that can detect and alert if the child is in trouble.</p>
-               </div>
+               </div></div>
                 </h3>
+                <div className="col s12 m6">
+                <img classname="center" src={logo} style={{width:"250px", height:"300px", paddingTop:"40px"}}/>
+                </div>
+                </div>
+
+<div className="row">
                 <div className="col s6 m4">
                     <div className="card-panel">
                         <i className="material-icons medium purple-text">gps_fixed</i>
