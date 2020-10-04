@@ -8,7 +8,7 @@
   
   .leftBox{
     width: 345px;
-    height: 540px;
+    height: 538px;
     float: left;
     position: relative;
     display: block;
@@ -167,19 +167,19 @@
   
   
 
- @media screen and (min-width: 1400px){
+ @media screen and (min-width: 1200px){
   .authBox{
     width: 100%;
     float:center;
   }
  
     .leftBox{
-      width: 344.5px;
+      width: 346px;
       float: left;
     }
 
     .rightBox{
-      width: 453px;
+      width: 454px;
       border: 0.5;
       float:right;  
     }
@@ -194,12 +194,12 @@
     }
 
     .leftBox{
-      width: 344.5px;
+      width: 346.5px;
       float: left;
     }
 
     .rightBox{
-      width: 452.5px;
+      width: 453.5px;
       border: 0.5;
       float:right;  
     }

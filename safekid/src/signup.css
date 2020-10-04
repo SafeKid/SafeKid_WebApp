@@ -6,7 +6,7 @@
 
 .rBox{
   width: 345px;
-  height: 540px;
+  height: 538px;
   float: right;
   position: relative;
   display: block;
@@ -59,6 +59,11 @@
   left: 30px;
   font-size: 17px;
 }
+.imageText.style4{
+  top: 480px;
+  left: 90px;
+  font-size: 17px;
+}
 
 .lBox{
   width: 453px;
@@ -70,8 +75,8 @@
 
 .bo{
   width: 310px;
-  height: 415px;
-  margin-top: 110px;
+  height: 425px;
+  margin-top: 10px;
   padding-left:50px;
 }
 
@@ -84,10 +89,10 @@
   color:#0c0c0c;;
 }
 
-.inputBox{
+.inputBo{
   width: 300px;
-  height: 30px;
-  margin-bottom: 30px;
+  height: 15px;
+  margin-bottom: 55px;
 }
 
 .input{
@@ -118,15 +123,15 @@
  margin-top: 35px;
 }
 
-@media screen and (min-width: 1400px){
+@media screen and (min-width: 1200px){
   
     .rBox{
-      width: 344.5px;
+      width: 346px;
       float: right;
     }
 
     .lBox{
-      width: 453px;
+      width: 454px;
       border: 0.5;
       float:left;  
     }
@@ -137,12 +142,12 @@
 
    
     .rBox{
-      width: 344.5px;
+      width: 346.5px;
       float: right;
     }
 
     .lBox{
-      width: 452.5px;
+      width: 453.5px;
       border: 0.5;
       float:left;  
     }

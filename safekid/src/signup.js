@@ -48,30 +48,32 @@ const handleSubmit = (e) => {
                     <div className = {'imageAth'}/>
                     <div className = {'imageText bold style1'}>SafeKid</div>
                     <div className = {'imageText style2'}>Making the world a safer place to your child</div>
-                    <div className={'imageText style3'}>Already a Member? <Link style={{color:"#c2b0eb", fontWeight:"bold"}} to="/">Sign in</Link></div>
+                    <div className={'imageText style3'}>Already a Member? <Link style={{color:"#c2b0eb", fontWeight:"bold"}} to="signin">Sign in</Link></div>
+                    <div className={'imageText style4'}>Back to <Link style={{color:"#c2b0eb", fontWeight:"bold"}} to="/">Home</Link></div>
                 </div>
                 <div className = {'lBox'}>
                 <img className="logo-img" src={logo} alt="align box" align="right"></img>
+                <div className={'titleAth'}>REGISTER</div>
                     <div className = {'bo'}>
-                        <div className={'titleAth'}>REGISTER</div>
+                        
                      <form onSubmit={handleSubmit}>
-                        <div className = {'inputBox'}>
+                        <div className = {'inputBo'} style={{width:"220px"}}>
                             <label>First name:</label>
-                            <input name={'firstname'} id="validationDefault01" className={'input'} type={'text'} value={firstname} onChange={e => setFirstName(e.target.value)}/>
+                            <input name={'firstname'}  className={'input'} type={'text'} value={firstname} onChange={e => setFirstName(e.target.value)}/>
                         </div>
-                        <div className = {'inputBox'}>
+                        <div className = {'inputBo'}>
                              <label>Last Name:</label>
                             <input name={'lastname'} className={'input'} type={'text'} value={lastname} onChange={e => setLastName(e.target.value)}required/>
                         </div>
-                        <div className = {'inputBox'}>
+                        <div className = {'inputBo'}>
                             <label>Email:</label>
                             <input className={'input'} type={'email'} value={email} onChange={handleChange} required/>
                         </div>
-                        <div className = {'inputBox'}>
+                        <div className = {'inputBo'}>
                             <label>Password:</label>
                             <input id="pw" className={'input'} type={'password'} value={password} onChange={e => setPassword(e.target.value)}required/>
                         </div>
-                        <div className = {'inputBox'}>
+                        <div className = {'inputBo'}>
                             <label>Confirm Password:</label>
                             <input id="cpw" className={'input'} type={'password'} value={confirmpassword} onChange={e => setCpass(e.target.value)}required/>
                         </div>
@@ -80,7 +82,7 @@ const handleSubmit = (e) => {
                         </div>
                         <div>
                             <input type={'hidden'} name="images" />
-                        </div>
+                        </div><br/>
                         <Button className={'btnAth'} style={{backgroundColor:"#2e2d2d", fontWeight:"bold"}} onClick={register}>Register</Button>
                         
                         </form>

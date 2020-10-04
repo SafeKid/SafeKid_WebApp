@@ -4,20 +4,7 @@ import ChartistGraph from "react-chartist";
 // @material-ui/core
 import { makeStyles } from "@material-ui/core/styles";
 import {Link} from 'react-router-dom'
-import Icon from "@material-ui/core/Icon";
-// @material-ui/icons
-import Store from "@material-ui/icons/Store";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Update from "@material-ui/icons/Update";
-import ArrowUpward from "@material-ui/icons/ArrowUpward";
-import AccessTime from "@material-ui/icons/AccessTime";
-import Accessibility from "@material-ui/icons/Accessibility";
-import BugReport from "@material-ui/icons/BugReport";
-import Code from "@material-ui/icons/Code";
-import Cloud from "@material-ui/icons/Cloud";
-// core components
+import Button from "components/CustomButtons/Button.js";
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import Table from "components/Table/Table.js";
@@ -58,18 +45,31 @@ React.useEffect(() => [
   }))
 ])
  */
+var cs=3;
 
+const load = e => {
+  e.preventDefault()
+  cs = cs+1;
+  fetchData();
+
+ 
+  
+   }
  const [rows,setRows] =React.useState([]);
 
  React.useEffect(() => { fetchData()},[])
 
+
+
  function fetchData(){
-  db.ref('Reports').on('value',(snapshot) => {
+   
+  db.ref('Previous_Cases').orderByKey().limitToLast(cs).once('value',(snapshot) => {
+    console.log(snapshot.val());
     let rows=[];
     if(snapshot.exists()){
       snapshot.forEach((reportData) => {
         let report = reportData.val();
-        report.date = reportData.key;
+       
         rows.push(report);
 
         setRows([]);
@@ -83,59 +83,43 @@ React.useEffect(() => [
     className="App"
     style={{
       backgroundImage: `url(${carfix})`, 
-      height: "100%"  
     }}>
       <div className="Wrapper"  style={{marginLeft:"50px"}}>
     <div>
     <GridContainer>
       <GridItem xs={9} sm={9} md={9}>
-        <Card>
+        <Card style={{backgroundColor: 'rgba(0,0,0,0.5)'}}>
           <CardHeader color="primary">
             <h4 className={classes.cardTitleWhite}>News Feed</h4>
           </CardHeader>
-          <CardBody>
-  <br/><br/>
+          <CardBody style={{marginLeft:"10px"}}>
+
   <div>
-      {rows.map(rows => {
-          return <p key={rows.date}>{rows.case}</p>
-        })}
-    </div>
-  <br/><br/>
-          </CardBody>
-        </Card>
+  <GridItem xs={10} sm={10} md={12}>
+      {rows.map(rows =><div key={rows.key} className="card" variant="outlined">
+             
+                <div className="card-text" style={{padding:"20px" }}>
+                <p>Date:&emsp; { rows.date }</p>
+                <p>Location:&emsp; { rows.location}</p>
+                <p>Case:&emsp; { rows.case1}</p>
+                </div>
+          
+            </div>
+           
+            )}
+</GridItem>
+
+    </div> </CardBody>
+  <br/>
+  <GridItem xs={12} sm={12} md={5}>
+    <div style={{paddingLeft:"700px"}}>
+  <Button color="primary" onClick={load}>Load More</Button>
+  </div><br/>
+    </GridItem>
+         </Card>
       </GridItem>
 
-      <GridItem xs={9} sm={9} md={9}>
-        <Card>
-          <CardBody>
-           <br/> <br/> <br/> <br/> <br/>
-          </CardBody>
-        </Card>
-      </GridItem>
-
-      <GridItem xs={9} sm={9} md={9}>
-        <Card>
-          <CardBody>
-           <br/> <br/> <br/> <br/> <br/>
-          </CardBody>
-        </Card>
-      </GridItem>
-
-      <GridItem xs={9} sm={9} md={9}>
-        <Card>
-          <CardBody>
-           <br/> <br/> <br/> <br/> <br/>
-          </CardBody>
-        </Card>
-      </GridItem>
-
-      <GridItem xs={9} sm={9} md={9}>
-        <Card>
-          <CardBody>
-           <br/> <br/> <br/> <br/> <br/>
-          </CardBody>
-        </Card>
-      </GridItem>
+     
     </GridContainer>
     </div>
     </div>
