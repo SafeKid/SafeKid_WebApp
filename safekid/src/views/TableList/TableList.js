@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -36,8 +36,10 @@ import  "views/Image.css"
 import { bugs, website, server } from "variables/general.js";
 import { blackColor } from "assets/jss/material-dashboard-react";
 import { Popover } from "@material-ui/core";
-import avatar from "assets/img/faces/marc.jpg";
+import avatar from "assets/img/faces/pic.jpg";
 import CardAvatar from "components/Card/CardAvatar.js";
+import fire from "../../config/fire"
+import Alert from "components/alert";
 
 /*import {
   dailySalesChart,
@@ -69,6 +71,7 @@ const styles = {
 
 
 
+
 const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
@@ -77,32 +80,87 @@ export default function Dashboard() {
   /*
   saveDetails = () => {
     deviceNo : "1234";
-    childName: "Kasun Perera";
+    cname: "Kasun Perera";
     age: "14";
   };
   */
+
+  const [sno, setsno] = useState('')
+  const [cname, setcname] = useState('')
+  const [age, setage] = useState('')
+  const [phoneNo, setphoneNo] = useState('')
+  const [user, setuser] = useState('')
+  const [pname, setpname] = useState('')
+  const [deviceList, setdeviceList] = useState([])
+  // const serialNoChange=(sn) =>{
+  //  setsno(sn.target.value)
+    // }
+
+    useEffect(()=>{
+      fire.db.ref('/Devices').on('value',snapshot=>{
+        let deviceLists=[]
+        snapshot.forEach((child)=>{
+          deviceLists.push({
+            sno:child.val().sno,
+            pname:child.val().pname,
+            cname:child.val().cname,
+            age:child.val().age,
+            user:child.val().user,
+            _key:child.key
+          });
+        });
+        
+        setdeviceList(deviceLists)
+        
+      });
+    },[]);
+    // })
+  const saveDeviceDetails=() =>{
+  if(sno==''||cname==''||age==''||phoneNo==''||pname==''){
+      alert('Enter all fields')
+      return;
+   }else if(sno.trim().length!=8){
+        alert('Serial Number Should be 8 characters long')
+        return;
+   }else{fire.db.ref('/Confirmations').push({
+      cno:cname,
+      sno:sno,
+      age:age,
+      phoneNo:phoneNo,
+      user:fire.auth.currentUser.email
+    }).then(()=>{
+      console.log('Inserted')
+      
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+  }
+
   return (
     <div
+  
     className="App"
     style={{
       backgroundImage: `url(${carfix})`,
     }}>
     <div className="Wrapper">
     <div>
-    No of Devices
+    
     <span className="badge m-2 badge-primary"> 0</span>
       <GridContainer>
         <GridItem xs={15} sm={6} md={4}>
         <Card>
             <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}>Device Details</h4>
+  <h4 className={classes.cardTitleWhite}>Device List</h4>
             </CardHeader>
             <CardBody>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
-                    labelText="Device No"
-                    id="DeviceNo"
+                    labelText="Serial No"
+                    id="SerialNo"
+                    onChange={(sn)=>setsno(sn.target.value)}
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -111,7 +169,8 @@ export default function Dashboard() {
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
                     labelText="Child Name"
-                    id="childName"
+                    id="cname"
+                    onChange={(cname)=>setcname(cname.target.value)}
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -123,46 +182,69 @@ export default function Dashboard() {
                   <CustomInput
                     labelText="Age"
                     id="Age"
+                    onChange={(age)=>setage(age.target.value)}
                     formControlProps={{
                       fullWidth: true
                     }}
                   />
                 </GridItem>
               </GridContainer>
-            
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={5}>
+                  <CustomInput
+                    labelText="Phone No"
+                    id="Phone No"
+                    onChange={(phoneNo)=>setphoneNo(phoneNo.target.value)}
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+              </GridContainer>
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={5}>
+                  <CustomInput
+                    labelText="Parent Name"
+                    id="Pname"
+                    onChange={(pname)=>setpname(pname.target.value)}
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+              </GridContainer>
             </CardBody>
             <CardFooter>
-              <Button color="primary">Add Details</Button><br/>
+              <Button color="primary" onClick={saveDeviceDetails}>Add Details </Button><br/>
+                 
               <br/>
             </CardFooter>
           </Card>
         </GridItem>
       </GridContainer>
-      <GridItem   xs={10} sm={10} md={3} >
+      <GridItem   xs={10} sm={10} md={3}>
+          {deviceList.map((item,key)=>((item.user==fire.auth.currentUser.email)?
           <Card profile >
             <CardAvatar profile>
               <a href="" onClick={e => e.preventDefault()}>
-                <img src={avatar} alt="..." />
+                 <img src={avatar} alt="..." />
               </a>
             </CardAvatar>
-            <CardBody profile>
-              <h4 className={classes.cardTitle}>Alec Thompson</h4>
-              <p className={classes.description}>
-               
-              </p>
-             
+            <CardBody profile >
+          <h4 className={classes.cardTitle}>Serial No:   {item.sno}</h4>
+                  <p className={classes.description}>Child Name:   {item.cname}</p>
+                  <p className={classes.description}>Age:   {item.age}</p>
+            <Button color="danger">Remove Device</Button>
             </CardBody>
           </Card>
+          :null))}
         </GridItem>
     </div>
     </div>
     </div>
   );
 
- /* NewDeviceDetails(){
-
-  }*/
-
+ 
 
 
 }

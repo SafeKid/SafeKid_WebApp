@@ -19,13 +19,15 @@ import { bugs, website, server } from "variables/general.js";
 import { blackColor } from "assets/jss/material-dashboard-react";
 import { Popover } from "@material-ui/core";
 import { DetailDevice } from "components/Devices/DeviceCounter.jsx";
+import { Component } from 'react';
 
 class DeviceCounter extends Component {
     state = {  
         count: 1,
         deviceNo:1234,
         childName:"",
-        age: " "
+        age: "",
+        phoneno:''
     };
 
     handleIncrement = () => {
@@ -65,13 +67,25 @@ class DeviceCounter extends Component {
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
                     labelText="Age"
-                    id="Age"
+                    id={this.state.age}
                     formControlProps={{
                       fullWidth: true
                     }}
                   />
                 </GridItem>
               </GridContainer>
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={5}>
+                  <CustomInput
+                    labelText="Phone No."
+                    id="Phone No."
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+              </GridContainer>
+
             
             </CardBody>
             <CardFooter>
