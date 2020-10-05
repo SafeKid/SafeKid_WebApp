@@ -92,6 +92,7 @@ export default function Dashboard() {
   const [user, setuser] = useState('')
   const [pname, setpname] = useState('')
   const [deviceList, setdeviceList] = useState([])
+  const [alertMessage, setAlertMessage]=useState(null)
   // const serialNoChange=(sn) =>{
   //  setsno(sn.target.value)
     // }
@@ -117,11 +118,15 @@ export default function Dashboard() {
     // })
   const saveDeviceDetails=() =>{
   if(sno==''||cname==''||age==''||phoneNo==''||pname==''){
-      alert('Enter all fields')
+    setAlertMessage({
+      type: 'error',
+      message: "any field shouldn't be empty"})
       return;
    }else if(sno.trim().length!=8){
-        alert('Serial Number Should be 8 characters long')
-        return;
+        setAlertMessage({
+          type: 'error',
+          message: "Serial Nuumber should be 8 charactors long"})
+          return;
    }else{fire.db.ref('/Confirmations').push({
       cno:cname,
       sno:sno,
@@ -148,6 +153,7 @@ export default function Dashboard() {
     <div>
     
     <span className="badge m-2 badge-primary"> 0</span>
+      {alertMessage && <Alert type={alertMessage.type} message={alertMessage.message} autoClose={5000}/> }
       <GridContainer>
         <GridItem xs={15} sm={6} md={4}>
         <Card>
@@ -222,7 +228,7 @@ export default function Dashboard() {
           </Card>
         </GridItem>
       </GridContainer>
-      <GridItem   xs={10} sm={10} md={3}>
+      <GridItem   xs={10} sm={10} md={3} >
           {deviceList.map((item,key)=>((item.user==fire.auth.currentUser.email)?
           <Card profile >
             <CardAvatar profile>
