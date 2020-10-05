@@ -40,6 +40,7 @@ function Signin(props) {
                     <div className = {'imageText bold style1'}>SafeKid</div>
                     <div className = {'imageText style2'}>Making the world a safer place to your child</div>
                     <div className={'imageText style3'}>Don't have an account?  <Link style={{color:"#c2b0eb", fontWeight:"bold"}} to="/signup">Sign up</Link></div>
+                   <br/> <div className={'imageText style4'}>Back to <Link style={{color:"#c2b0eb", fontWeight:"bold"}} to="/">Home</Link></div>
                 </div>
                 <div className = {'rightBox'}>
                 <img className="logo-img" src={logo} align="right"></img>
@@ -66,10 +67,7 @@ function Signin(props) {
                             />
                       </div>
                       <div className={'contentBox'}>
-                          <div className={'checkboxBox'}>
-                            <input type={'checkbox'} className={'checkbox'}/>
-                            <label className={'checkboxLabel'}>Remember</label>
-                      </div>
+    
                       <div className={'text1'}><Link style={{ fontWeight:"bold"}} to="/resetpwd">Forgot Password?</Link></div>
                       </div>
                       <Button className="Button" style={{backgroundColor:"#2e2d2d", fontWeight:"bold"}}
