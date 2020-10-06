@@ -66,13 +66,14 @@ setTitle("")
                 <div className="col s12 m6 center" style={{color:"white"}}>
                     
                     <div className="center" style={{color:"white"}}><h3><i><br/>Is SafeKid For You?</i></h3></div>
-                    <p>If you have loved ones that you are responsible for, if you’re a parent, if you are a caregiver, then YES! This helps your loved ones and with multiple features ensures their safety! Be carefree and stay in touch on the go!</p>
+                    <p>If you have loved ones that you are responsible for, if you’re a parent, if you are a caregiver, then YES! This helps you track your loved ones and with multiple features ensures their safety! Be carefree and stay in touch on the go!</p>
                     <img src={img}/>
                 </div>
                
 
                 
                 <div className="col s12 m6">
+                    <br/>
                     <div className="card-panel grey lighten-3">
                         <h5>Contact Us</h5>
                         <form>
