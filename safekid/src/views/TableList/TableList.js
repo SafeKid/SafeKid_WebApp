@@ -36,7 +36,7 @@ import  "views/Image.css"
 import { bugs, website, server } from "variables/general.js";
 import { blackColor } from "assets/jss/material-dashboard-react";
 import { Popover } from "@material-ui/core";
-import avatar from "assets/img/faces/marc.jpg";
+import avatar from "assets/img/faces/pic.jpg";
 import CardAvatar from "components/Card/CardAvatar.js";
 import fire from "../../config/fire"
 import Alert from "components/alert";
@@ -156,7 +156,7 @@ export default function Dashboard() {
       {alertMessage && 
         <Alert type={alertMessage.type} message={alertMessage.message} autoClose={5000}/> }
       <GridContainer>
-        <GridItem xs={15} sm={6} md={4}>
+        <GridItem xs={15} sm={6} md={6}>
         <Card>
             <CardHeader color="primary">
   <h4 className={classes.cardTitleWhite}>Device List</h4>
@@ -228,9 +228,9 @@ export default function Dashboard() {
             </CardFooter>
           </Card>
         </GridItem>
-      </GridContainer>
-      <GridItem   xs={10} sm={10} md={3} >
-          {deviceList.map((item,key)=>((item.user==fire.auth.currentUser.email)?
+  
+       <GridItem   xs={10} sm={10} md={4} >
+       {deviceList.map((item,key)=>((item.user==fire.auth.currentUser.email)?
           <Card profile >
             <CardAvatar profile>
               <a href="" onClick={e => e.preventDefault()}>
@@ -241,12 +241,14 @@ export default function Dashboard() {
           <h4 className={classes.cardTitle}>Serial No:   {item.sno}</h4>
                   <p className={classes.description}>Child Name:   {item.cname}</p>
                   <p className={classes.description}>Age:   {item.age}</p>
-            
-              
+
+                  <Button color="info">Track Child</Button>
+                 <Button color="danger">Remove Device</Button>
             </CardBody>
           </Card>
           :null))}
         </GridItem>
+        </GridContainer>
     </div>
     </div>
     </div>
