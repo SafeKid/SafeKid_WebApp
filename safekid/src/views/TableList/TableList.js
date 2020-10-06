@@ -36,7 +36,7 @@ import  "views/Image.css"
 import { bugs, website, server } from "variables/general.js";
 import { blackColor } from "assets/jss/material-dashboard-react";
 import { Popover } from "@material-ui/core";
-import avatar from "assets/img/faces/pic.jpg";
+import avatar from "assets/img/faces/marc.jpg";
 import CardAvatar from "components/Card/CardAvatar.js";
 import fire from "../../config/fire"
 import Alert from "components/alert";
@@ -153,7 +153,8 @@ export default function Dashboard() {
     <div>
     
     <span className="badge m-2 badge-primary"> 0</span>
-      {alertMessage && <Alert type={alertMessage.type} message={alertMessage.message} autoClose={5000}/> }
+      {alertMessage && 
+        <Alert type={alertMessage.type} message={alertMessage.message} autoClose={5000}/> }
       <GridContainer>
         <GridItem xs={15} sm={6} md={4}>
         <Card>
@@ -233,14 +234,15 @@ export default function Dashboard() {
           <Card profile >
             <CardAvatar profile>
               <a href="" onClick={e => e.preventDefault()}>
-                 <img src={avatar} alt="..." />
+                <img src={avatar} alt="..." />
               </a>
             </CardAvatar>
             <CardBody profile >
           <h4 className={classes.cardTitle}>Serial No:   {item.sno}</h4>
                   <p className={classes.description}>Child Name:   {item.cname}</p>
                   <p className={classes.description}>Age:   {item.age}</p>
-            <Button color="danger">Remove Device</Button>
+            
+              
             </CardBody>
           </Card>
           :null))}
