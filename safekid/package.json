@@ -22,6 +22,7 @@
     "prop-types": "15.7.2",
     "react": "^16.13.1",
     "react-anchor-link-smooth-scroll": "^1.0.12",
+    "react-awesome-slider": "^4.1.0",
     "react-chartist": "0.14.3",
     "react-clear-cache": "^1.2.0",
     "react-dom": "^16.13.1",
@@ -31,6 +32,7 @@
     "react-material-ui-form-validator": "^2.0.10",
     "react-router-dom": "5.2.0",
     "react-scripts": "^3.4.3",
+    "react-slideshow-image": "^3.3.0",
     "react-swipeable-views": "0.13.9",
     "validator": "^13.1.1",
     "yup": "^0.29.1"
