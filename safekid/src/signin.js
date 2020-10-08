@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {Link, withRouter} from 'react-router-dom';
+import React, { useState, useCallback, useContext} from 'react';
+import {Link, withRouter,Redirect} from 'react-router-dom';
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import fire from 'config/fire';
 import styles from "assets/jss/material-dashboard-react/views/dashboardStyle.js";
@@ -9,6 +9,7 @@ import logo from "assets/img/reactlogo.png";
 import './signin.css';
 import Alert from "components/alert";
 import Button from "components/CustomButtons/Button.js";
+import { AuthContext } from "./auth.js";
 
 const useStyles = makeStyles(styles);
 
@@ -21,6 +22,12 @@ function Signin(props) {
        const [errorMessage, setErrorMessage] = useState('')
 
        const handleChange= (e) => {setEmail(e.target.value)}
+
+       const { currentUser } = useContext(AuthContext);
+/*
+  if (currentUser) {
+    return <Redirect to="/" />;
+  }*/
 
     return(
            /* <div

@@ -98,42 +98,14 @@ export default function Contact() {
 }
 }
   
-   /* try {
-      setAlertMessage(null)
-   db.ref('Questions')
-  .push({
-       user:auth.currentUser.email,
-       date:new Date().toISOString().substring(0, 10),
-       name:name,
-       title:title,
-       description:discription,
-       respond:"",
-       
-  
-        })
-        setAlertMessage({
-         type:'success',
-         message:"updated successfully"
-     })
-  
-       }catch(error) {
-                    // alert(error.message)
-                 setAlertMessage({
-                     type:'error',
-                     message:"couldn't update"
-                 })
-             }
-            
-            }
-  
-*/
+   
   return (
     <div
     className="App"
     style={{
       backgroundImage: `url(${carfix})`,
     }}>
-      <div className="Wrapper" style={{marginLeft:"100px"}}>
+      <div className="Wrapper" style={{marginLeft:"200px"}}>
     <div>
       <GridContainer style={{paddingTop:"50px"}}>
         <GridItem xs={10} sm={8} md={8}>

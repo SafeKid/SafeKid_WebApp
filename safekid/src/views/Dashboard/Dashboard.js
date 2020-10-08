@@ -85,7 +85,7 @@ export default function Dashboard(props) {
     style={{
       backgroundImage: `url(${carfix})`,
     }}>
-      <div className="Wrapper">
+      <div className="Wrapper" style={{marginLeft:"100px"}}>
     <div>
       <GridContainer>
         
@@ -111,7 +111,7 @@ export default function Dashboard(props) {
           
           </Card></div>
      
-            <div style={{ paddingLeft:"50px" }}>
+            <div style={{ paddingLeft:"0px" }}>
           <Card style={{backgroundColor: 'rgba(0,0,0,0.5)'}}>
           <CardHeader color="primary">MY DEVICES</CardHeader>
        

@@ -153,7 +153,7 @@ const handleUpdate = (e) => {
     style={{
       backgroundImage: `url(${carfix})`,
     }}>
-      <div className="Wrapper" style={{marginLeft:"50px"}}>
+      <div className="Wrapper" style={{marginLeft:"100px"}}>
     <div>
       <GridContainer style={{paddingTop:"50px"}}>
         <GridItem xs={10} sm={10} md={6}>
@@ -253,17 +253,18 @@ const handleUpdate = (e) => {
             </CardFooter>
           </Card>
         </GridItem>
-        <GridItem   xs={10} sm={10} md={3} >
+        <GridItem   xs={10} sm={10} md={4} >
+        <div style={{ paddingLeft:"100px"}}>
           <Card profile >
             <CardAvatar profile>
             <label htmlFor="contained-image-file">
                 <img src={imageAsUrl} alt={""} style={{cursor:"pointer"}}/>
               </label>
             </CardAvatar>
-            <CardBody>
-            
-            
-            <div className={classes.root}>
+
+            <CardBody >
+
+            <div style={{ padding:"20px"}} className={classes.root}>
       <input
         accept="image/*"
         className={classes.input}
@@ -282,6 +283,7 @@ const handleUpdate = (e) => {
  
             </CardBody>
           </Card>
+          </div>
         </GridItem>
       </GridContainer>
     </div>
