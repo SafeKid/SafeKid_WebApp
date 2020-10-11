@@ -21,7 +21,7 @@ render(){
                </div></div>
                 </h3>
                 <div className="col s12 m6">
-                <img classname="center" src={logo} style={{width:"250px", height:"300px", paddingTop:"40px"}}/>
+                <img classname="center" src={logo} style={{width:"250px", height:"270px", paddingTop:"40px"}}/>
                 </div>
                 </div>
 

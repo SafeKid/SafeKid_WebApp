@@ -8,8 +8,10 @@ import Dashboard from 'views/Dashboard/Dashboard';
 import { CircularProgress } from '@material-ui/core';
 import fire from 'config/fire';
 import { createBrowserHistory } from "history";
-import { Home } from './validate'
+import { Home } from './home frag'
 //import {Devices} from './components/Devices/DeviceCounter'
+import { AuthProvider } from "./auth";
+import PrivateRoute from "./privaterouter";
 
 const hist = createBrowserHistory();
 
@@ -24,35 +26,20 @@ export default function App() {
   })
 
   return firebaseInitialized !== false? (
-  
+    <AuthProvider>
     <Router history={hist}> 
              <Switch> 
       <Route exact path="/" component={Home}/>
       <Route path="/signin" component={Signin}/>
       <Route path="/signup" component={Signup}/>
       <Route path="/resetpwd" component={ResetPwd}/>
-      <Route path="/parent" component={parent} />
-      <Route path="/Dashboard" component={Dashboard}/>
+      <PrivateRoute path="/parent" component={parent} />
+      <PrivateRoute path="/Dashboard" component={Dashboard}/>
   
         </Switch>    
   </Router>  
-          /* 
-          <Switch> 
-      <Route exact path="/" component={Signin}/>
-      <Route path="/signup" component={Signup}/>zzzzzz
-      <Route path="/resetpwd" component={ResetPwd}/>
-      <Route path="/parent" component={parent} />
-      <Route path="/Dashboard" component={Dashboard}/>
-        </Switch>    
-        <Switch> 
-      <Route exact path="/" component={Home}/>
-      <Route path="/signin" component={Signin}/>
-      <Route path="/signup" component={Signup}/>
-      <Route path="/resetpwd" component={ResetPwd}/>
-      <Route path="/parent" component={parent} />
-      <Route path="/Dashboard" component={Dashboard}/>
-        </Switch>  
-          */
+  </AuthProvider>
+         
   ) : <div id = "loader"><CircularProgress/></div>
 
   
