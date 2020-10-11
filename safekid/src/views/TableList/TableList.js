@@ -137,7 +137,7 @@ export default function Dashboard() {
           message: "Serial Nuumber should be 8 charactors long"})
           return;
   //  }
-        }else{fire.db.ref('/Confirmations').push({
+        }else{fire.db.ref('/Confirmations').child(sno).set({
       cno:cname,
       sno:sno,
       age:age,
