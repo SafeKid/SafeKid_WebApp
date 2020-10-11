@@ -1,10 +1,10 @@
 import React, { Fragment,useState, useEffect } from 'react';
-import Navbar from "../src/Home/navbar"
-import Banner from "../src/Home/banner"
-import About from "../src/Home/about"
-import Contact from "../src/Home/contact"
+import Navbar from "./Home/navbar"
+import Banner from "./Home/banner"
+import About from "./Home/about"
+import Contact from "./Home/contact"
 
-import Footer from '../src/Home/footer'
+import Footer from './Home/footer'
 
 export const Home=()=>(
   <Fragment>

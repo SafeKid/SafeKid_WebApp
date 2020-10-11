@@ -107,7 +107,7 @@ const [allRows, setAllRows] = React.useState([]);
       backgroundImage: `url(${carfix})`, 
       
     }}>
-      <div className="Wrapper"  style={{marginLeft:"200px"}}>
+      <div className="Wrapper"  style={{marginLeft:"150px"}}>
         
       <div style={{paddingLeft:"670px"}} className={classes.searchWrapper} id="Search">
         <CustomInput

@@ -8,7 +8,7 @@ import Dashboard from 'views/Dashboard/Dashboard';
 import { CircularProgress } from '@material-ui/core';
 import fire from 'config/fire';
 import { createBrowserHistory } from "history";
-import { Home } from './validate'
+import { Home } from './home frag'
 //import {Devices} from './components/Devices/DeviceCounter'
 import { AuthProvider } from "./auth";
 import PrivateRoute from "./privaterouter";
