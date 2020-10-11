@@ -44,7 +44,13 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
-
+import Maps from '../Maps/Maps'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams
+} from "react-router-dom";
 /*import {
   dailySalesChart,
   emailsSubscriptionChart,
@@ -136,8 +142,15 @@ export default function Dashboard() {
           type: 'error',
           message: "Serial Nuumber should be 8 charactors long"})
           return;
-  //  }
-        }else{fire.db.ref('/Confirmations').child(sno).set({
+   }else if(phoneNo!="07[1,2,5,6,7,8][0-9]+"){
+      
+        setAlertMessage({
+          type: 'error',
+          message: "Phone number Invalid"})
+          return;
+      
+    
+   }else{fire.db.ref('/Confirmations').push({
       cno:cname,
       sno:sno,
       age:age,
@@ -436,8 +449,12 @@ export default function Dashboard() {
                   <p className={classes.description}>Child Name:   {item.cname}</p>
                   <p className={classes.description}>Age:   {item.age}</p>
 
-                  
-                <Link to="/parent/maps/${lat}/${long}" ><Button color="info">Track Child</Button></Link>
+                 <Router> 
+                <Link to={`/parent/maps/${item.lat}/${item.long}`}><Button color="info">Track Child</Button></Link>
+                <Switch>
+               <Route path="/parent/maps/:lat1/:long1" children={<Maps />}/>
+               </Switch>
+               </Router>
                  <Button color="danger" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) deleteDevice(item._key) } } >Remove Device</Button>
             </CardBody>
           </Card>
