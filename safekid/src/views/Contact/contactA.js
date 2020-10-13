@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import {Link, Redirect, withRouter} from 'react-router-dom';
 import InputLabel from "@material-ui/core/InputLabel";
+import DeleteIcon from '@material-ui/icons/Delete';
 // core components
 import GridItem from "components/Grid/GridItem.js";
+import IconButton from '@material-ui/core/IconButton';
 import GridContainer from "components/Grid/GridContainer.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
@@ -16,6 +19,7 @@ import carfix from "assets/img/cp.png";
 import avatar from "assets/img/faces/marc.jpg";
 import { db,auth,storage } from 'config/fire';
 import Alert from "components/alert";
+import TablePagination from '@material-ui/core/TablePagination';
 
 const styles = {
   cardCategoryWhite: {
@@ -56,6 +60,19 @@ export default function Contact() {
   const [name, setName] = useState('')
   const [title, setTitle] = useState('')
   const [discription, setDiscription] = useState('')
+  const [rows,setRows] =React.useState([]);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(3);
+
+  
+ const handleChangePage = (event, newPage) => {
+  setPage(newPage);
+};
+
+const handleChangeRowsPerPage = (event) => {
+  setRowsPerPage(parseInt(event.target.value, 10));
+  setPage(0);
+};
 
   const handleUpdate = (e) => {
     e.preventDefault()
@@ -97,7 +114,42 @@ export default function Contact() {
   });
 }
 }
-  
+
+React.useEffect(() => { fetchData()},[])
+
+
+
+ function fetchData(){
+   
+  db.ref('Questions').on('value',(snapshot) => {
+    console.log(snapshot.val());
+    let rows=[];
+    if(snapshot.exists()){
+      snapshot.forEach((reportData) => {
+        let report = reportData.val();
+        report.key=reportData.key
+       
+        rows.push(report);
+
+        setRows([]);
+        setRows(rows);
+        
+       ;
+      })
+    }
+    })
+    
+  }
+
+  const deleteMsg = (val)=>{
+    db.ref('/Questions').child(val).remove()
+    setAlertMessage({
+      type: 'error',
+      message: "Your message has been deleted!"})
+      return;
+  }
+
+
    
   return (
     <div
@@ -105,17 +157,18 @@ export default function Contact() {
     style={{
       backgroundImage: `url(${carfix})`,
     }}>
-      <div className="Wrapper" style={{marginLeft:"200px"}}>
+      <div className="Wrapper" style={{margin:"50px"}}>
     <div>
       <GridContainer style={{paddingTop:"50px"}}>
-        <GridItem xs={10} sm={8} md={8}>
+      
+        <GridItem xs={12} sm={12} md={6}>
           <Card>
             <CardHeader color="primary">
               <h4 className={classes.cardTitleWhite}>Need a Help?</h4>
               <p className={classes.cardCategoryWhite}>Contact Us</p>
             </CardHeader>
             <CardBody>
-            <GridContainer>
+            
                 <GridItem xs={12} sm={12} md={15}>
                   <CustomInput
                     labelText="Name"
@@ -132,9 +185,9 @@ export default function Contact() {
                   />
                   
                 </GridItem>
-              </GridContainer>
-            
-              <GridContainer>
+
+               
+              
 
                 <GridItem xs={12} sm={12} md={12}>
                   <CustomInput
@@ -147,9 +200,7 @@ export default function Contact() {
                     }}
                   />
                 </GridItem>
-              </GridContainer>
-
-              <GridContainer>
+             
 
                 <GridItem xs={12} sm={12} md={12}>
                   
@@ -167,16 +218,60 @@ export default function Contact() {
                     }}
                   />
                 </GridItem>
-              </GridContainer>
-     
+
             </CardBody>
             <CardFooter>
               <Button color="primary" onClick={handleUpdate}>Send</Button><br/>
-              <br/>
+             
             </CardFooter>
           </Card>
         </GridItem>
         
+        <GridItem   xs={10} sm={10} md={6} >
+       
+          <Card style={{backgroundColor: 'rgba(0,0,0,0.5)'}}>
+          <CardHeader color="primary">
+            <h4 className={classes.cardTitleWhite}>Response</h4>
+          </CardHeader>
+          <CardBody style={{marginLeft:"10px"}}>
+
+  <div>
+  <GridItem xs={10} sm={10} md={12}>
+      {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((rows,key)=>((rows.user==auth.currentUser.email)?
+           
+                <div className="card-text" style={{padding:"20px" }} className="card" variant="outlined">
+                <p>Question:&emsp; {rows.description }</p>
+                <p>Answer:&emsp; {rows.respond}</p>
+                <IconButton aria-label="delete" style={{ marginLeft: "350px"}} onClick={() => { if (window.confirm('Are you sure you wish to delete this message?')) deleteMsg(rows.key) } }>
+                  <DeleteIcon />
+                </IconButton>
+
+                </div>
+              
+           :null))}
+   
+
+    <TablePagination
+
+      component="div"
+      rowsPerPageOptions={[3, 6, 9]}
+      count={4}
+      page={page}
+      onChangePage={handleChangePage}
+      rowsPerPage={rowsPerPage}
+      onChangeRowsPerPage={handleChangeRowsPerPage}
+    />
+    
+</GridItem>
+
+    </div> </CardBody>
+  <br/>
+ 
+         </Card>
+ 
+          
+        </GridItem>
+
       </GridContainer>
     </div>
     </div>

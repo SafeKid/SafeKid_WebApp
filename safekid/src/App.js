@@ -35,7 +35,7 @@ export default function App() {
       <Route path="/resetpwd" component={ResetPwd}/>
       <PrivateRoute path="/parent" component={parent} />
       <PrivateRoute path="/Dashboard" component={Dashboard}/>
-  
+      
         </Switch>    
   </Router>  
   </AuthProvider>
