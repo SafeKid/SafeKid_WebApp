@@ -98,6 +98,50 @@ export default function UserProfile() {
 const handleUpdate = (e) => {
   e.preventDefault()
 
+var mobexp =/07[1,2,5,6,7,8][0-9]+/;
+
+  if(firstname==''||lastname==''||childage==''||mobno==''||childname==''){
+    setAlertMessage({
+      type: 'error',
+      message: "fields shouldn't be empty"})
+      return;
+   }else if(isNaN(mobno)){
+      
+        setAlertMessage({
+          type: 'error',
+          message: "Invalid phone number"})
+          return;
+
+        }else if(mobno.length !=10){
+      
+          setAlertMessage({
+            type: 'error',
+            message: "Phone number should have 10 digits"})
+            return;
+          
+          }else if(childage < 5){
+      
+            setAlertMessage({
+              type: 'error',
+              message: "Child age should be between 6-20"})
+              return;
+            }else if(childage > 21){
+      
+              setAlertMessage({
+                type: 'error',
+                message: "Child age should be between 6-20"})
+                return;
+
+              }else if(isNaN(childage)){
+      
+                setAlertMessage({
+                  type: 'error',
+                  message: "Enter a valid age"})
+                  return;
+        
+    
+   }else{
+
   try {
      setAlertMessage(null)
   db.ref('Users/' + auth.currentUser.uid)
@@ -122,6 +166,7 @@ const handleUpdate = (e) => {
                     message:"couldn't update"
                 })
             }}
+          }
 
  React.useEffect(() => { fetchData()},[])
 

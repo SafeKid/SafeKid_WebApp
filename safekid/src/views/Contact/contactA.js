@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import {Link, Redirect, withRouter} from 'react-router-dom';
 import InputLabel from "@material-ui/core/InputLabel";
 import DeleteIcon from '@material-ui/icons/Delete';
+import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
 // core components
 import GridItem from "components/Grid/GridItem.js";
 import IconButton from '@material-ui/core/IconButton';
@@ -121,7 +122,7 @@ React.useEffect(() => { fetchData()},[])
 
  function fetchData(){
    
-  db.ref('Questions').on('value',(snapshot) => {
+  db.ref('Questions').orderByChild("user").startAt("user").on('value',(snapshot) => {
     console.log(snapshot.val());
     let rows=[];
     if(snapshot.exists()){
@@ -215,7 +216,7 @@ React.useEffect(() => { fetchData()},[])
                     inputProps={{
                       multiline: true,
                       rows: 5
-                    }}
+                    }} required
                   />
                 </GridItem>
 
@@ -237,11 +238,11 @@ React.useEffect(() => { fetchData()},[])
 
   <div>
   <GridItem xs={10} sm={10} md={12}>
-      {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((rows,key)=>((rows.user==auth.currentUser.email)?
+      {rows.reverse().slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((rows,key)=>((rows.user==auth.currentUser.email)?
            
                 <div className="card-text" style={{padding:"20px" }} className="card" variant="outlined">
-                <p>Question:&emsp; {rows.description }</p>
-                <p>Answer:&emsp; {rows.respond}</p>
+                <p><QuestionAnswerIcon fontSize="large" color="disabled"/>&emsp;Question:&emsp; {rows.description }</p>
+                <p><QuestionAnswerIcon/>&emsp;Answer:&emsp; {rows.respond}</p>
                 <IconButton aria-label="delete" style={{ marginLeft: "350px"}} onClick={() => { if (window.confirm('Are you sure you wish to delete this message?')) deleteMsg(rows.key) } }>
                   <DeleteIcon />
                 </IconButton>
@@ -255,7 +256,7 @@ React.useEffect(() => { fetchData()},[])
 
       component="div"
       rowsPerPageOptions={[3, 6, 9]}
-      count={4}
+      count={rows.length}
       page={page}
       onChangePage={handleChangePage}
       rowsPerPage={rowsPerPage}

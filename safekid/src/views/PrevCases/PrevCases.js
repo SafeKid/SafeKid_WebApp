@@ -6,6 +6,9 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import { makeStyles } from "@material-ui/core/styles";
 import {Link} from 'react-router-dom'
 import Button from "components/CustomButtons/Button.js";
+import LocationOn from "@material-ui/icons/LocationOn";
+import LibraryBooks from "@material-ui/icons/LibraryBooks";
+import EventIcon from '@material-ui/icons/Event';
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import Search from "@material-ui/icons/Search";
@@ -136,9 +139,9 @@ const [allRows, setAllRows] = React.useState([]);
       {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(rows =><div key={rows.key} className="card" variant="outlined">
              
                 <div className="card-text" style={{padding:"20px" }}>
-                <p>Date:&emsp; { rows.date }</p>
-                <p>Location:&emsp; { rows.location}</p>
-                <p>Case:&emsp; { rows.case1}</p>
+                <p><EventIcon  color="disabled"/>&emsp; Date:&emsp; { rows.date }</p>
+                <p><LocationOn color="disabled"/>&emsp;Location:&emsp; { rows.location}</p>
+                <p><LibraryBooks color="disabled"/>&emsp;Case:&emsp; { rows.case1}</p>
                 </div>
           
             </div>
